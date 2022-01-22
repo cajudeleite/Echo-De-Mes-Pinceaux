@@ -1,14 +1,13 @@
-// == Import
-import reactLogo from './react-logo.svg';
-import './styles.css';
+import './styles.scss';
+import { Route, Switch } from 'react-router-dom';
 
-// == Composant
-const App = () => (
-  <div className="app">
-    <img src={reactLogo} alt="react logo" />
-    <h1>Composant : App</h1>
-  </div>
-);
+const App = () => {
 
-// == Export
+  return(
+    <main className="app">
+      <h1>Composant : App</h1>
+    </main>
+  );
+};
+
 export default App;
