@@ -1,0 +1,82 @@
+@use '/src/styles/vars';
+
+.navbar {
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  background-color: vars.$rock-spray;
+  color: vars.$pampas;
+  align-items: center;
+  &__logo {
+    font-family: vars.$logo;
+    font-size: 35px;
+    width: 50%;
+    padding-left: 1rem;
+  }
+  &__items {
+    width: 50%;
+    font-family: vars.$title;
+    font-weight: 500;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+  &__burger {
+    display: none;
+  }
+}
+
+.filter {
+  display: none;
+}
+
+@media screen and(max-width: 767px) {
+  .navbar {
+    justify-content: space-between;
+    &__logo {
+      width: fit-content;
+    }
+    &__items {
+      display: none;
+      &__link {
+        margin-bottom: 2rem;
+        font-family: vars.$title;
+      }
+    }
+    &__burger {
+      display: flex;
+      &__button {
+        background: none;
+        border: none;
+      }
+      &__sidebar {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        background-color: vars.$rock-spray;
+        font-size: 20px;
+        width: 40%;
+        height: 100%;
+        top: 5rem;
+        right: 0;
+        align-items: flex-end;
+        padding-right: 1rem;
+        transition: all 2s linear;
+        z-index: 1;
+        &__hidden {
+          display: none;
+        }
+      }
+    }
+  }
+  .filter {
+    display: flex;
+    width: 70%;
+    background-color: #505050;
+    opacity: 0.6;
+    height: 100%;
+    top: 5rem;
+    left: 0;
+    position: fixed;
+  }
+}
