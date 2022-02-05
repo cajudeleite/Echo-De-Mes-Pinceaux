@@ -7,12 +7,12 @@ const ArtworkDropdownInput = ({ setValue, label, list }) => {
   const labelLowerCase = label.toLowerCase();
 
   return (
-    <div className="artwork_form__input__dropdown">
-      <label htmlFor={labelLowerCase} className='artwork_form__input__dropdown__label'>{label}</label>
+    <div className="artwork_form__container__form__input__dropdown">
+      <label htmlFor={labelLowerCase} className='artwork_form__container__form__input__dropdown__label'>{label}</label>
       <select
       name="select"
       id={labelLowerCase}
-      className='artwork_form__input__dropdown__select'
+      className='artwork_form__container__form__input__dropdown__select'
       onChange={(event) => {
         setValue(event.target.value);
       }}>

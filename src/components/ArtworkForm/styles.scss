@@ -1,52 +1,105 @@
 @use '/src/styles/vars';
 
 .artwork_form {
-  &__title {
-    padding: 50px 0;
-    font-family: vars.$title;
-    font-weight: 800;
-    font-size: 30px;
-  }
-  &__input {
-    &__text {
-      padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__container {
+    margin: 3rem 0;
+    border-radius: 5px;
+    width: 50%;
+    height: fit-content;
+    background-color: vars.$pampas;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &__title {
+      font-family: vars.$title;
+      font-size: 30px;
+      font-weight: 700;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    &__form {
       display: flex;
       flex-direction: column;
-      &__label {
-        padding-bottom: 5px;
-      }
+      align-items: center;
+      padding-bottom: 2rem;
       &__input {
-        height: 25px;
+        &__text {
+          width: 80%;
+          display: flex;
+          flex-direction: column;
+          padding-bottom: 1rem;
+          &__label {
+            padding-bottom: 5px;
+          }
+          &__label::after {
+            content: ' :';
+          }
+          &__input {
+            border-radius: 5px;
+            border: 1px solid vars.$pesto;
+            height: 2rem;
+          }
+        }
+        &__dropdown {
+          width: 80%;
+          display: flex;
+          flex-direction: column;
+          padding-bottom: 1rem;
+          &__label {
+            padding-bottom: 5px;
+          }
+          &__label::after {
+            content: ' :';
+          }
+          &__select {
+            border-radius: 5px;
+            border: 1px solid vars.$pesto;
+            height: 2rem;
+          }
+        }
+        &__file {
+          width: 80%;
+          display: flex;
+          flex-direction: column;
+          padding-bottom: 1rem;
+          &__label {
+            padding-bottom: 5px;
+          }
+          &__label::after {
+            content: ' :';
+          }
+        }
+        &__textarea {
+          width: 80%;
+          display: flex;
+          flex-direction: column;
+          padding-bottom: 1rem;
+          &__label {
+            padding-bottom: 5px;
+          }
+          &__label::after {
+            content: ' :';
+          }
+          &__input {
+            height: 5rem;
+          }
+        }
       }
-    }
-    &__dropdown {
-      padding-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-      &__label {
-        padding-bottom: 5px;
-      }
-      &__select {
-        height: 25px;
-      }
-    }
-    &__file {
-      padding-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-      &__label {
-        padding-bottom: 5px;
-      }
-    }
-    &__textarea {
-      padding-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-      &__label {
-        padding-bottom: 5px;
-      }
-      &__input {
-        height: 50px;
+      &__submit {
+        color: vars.$rock-spray;
+        background-color: vars.$sea-buckthorn;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        font-family: vars.$title;
+        height: 2rem;
+        padding: 0 1rem;
+        margin: 1rem 0 0;
+        cursor: pointer;
       }
     }
   }

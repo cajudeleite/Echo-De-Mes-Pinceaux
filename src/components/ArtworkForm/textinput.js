@@ -6,12 +6,12 @@ const ArtworkTextInput = ({ value, setValue, label }) => {
   const labelLowerCase = label.toLowerCase();
 
   return (
-    <div className="artwork_form__input__text">
-      <label htmlFor={labelLowerCase} className='artwork_form__input__text__label'>{label}</label>
+    <div className="artwork_form__container__form__input__text">
+      <label htmlFor={labelLowerCase} className='artwork_form__container__form__input__text__label'>{label}</label>
       <input
         type="text"
         id={labelLowerCase}
-        className='artwork_form__input__text__input'
+        className='artwork_form__container__form__input__text__input'
         placeholder=''
         value={value}
         onChange={(event) => {
