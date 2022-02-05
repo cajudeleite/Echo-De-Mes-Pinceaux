@@ -1,0 +1,53 @@
+@use '/src/styles/vars';
+
+.artwork_form {
+  &__title {
+    padding: 50px 0;
+    font-family: vars.$title;
+    font-weight: 800;
+    font-size: 30px;
+  }
+  &__input {
+    &__text {
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      &__label {
+        padding-bottom: 5px;
+      }
+      &__input {
+        height: 25px;
+      }
+    }
+    &__dropdown {
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      &__label {
+        padding-bottom: 5px;
+      }
+      &__select {
+        height: 25px;
+      }
+    }
+    &__file {
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      &__label {
+        padding-bottom: 5px;
+      }
+    }
+    &__textarea {
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      &__label {
+        padding-bottom: 5px;
+      }
+      &__input {
+        height: 50px;
+      }
+    }
+  }
+}
