@@ -7,7 +7,7 @@ import { GET_TECHNIQUES_FROM_API, setTechniques } from '../actions/technique';
 import { GET_COLLECTIONS_FROM_API, setCollections } from '../actions/collection';
 import { GET_STATUSES_FROM_API, setStatus } from '../actions/status';
 import { POST_ARTWORK } from '../actions/artwork';
-import { useSelector } from 'react-redux';
+import { POST_CONTACT } from '../actions/contact';
 
 export const dataMiddleware = (store) => (next) => (action) => {
 
@@ -105,14 +105,33 @@ export const dataMiddleware = (store) => (next) => (action) => {
         })
         .then(
           (response) => {
-            console.log(response);
-            console.log('title:', action.title);
-            console.log('year:', action.year);
-            console.log('technique:', action.technique);
-            console.log('collection:', action.collection);
-            console.log('status:', action.status);
-            console.log('photo:', action.photo);
-            console.log('description:', action.description);
+            console.log(response)
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+          },
+        );
+      next(action);
+      break;
+    }
+    case POST_CONTACT: {
+      api
+        .post('/contacts', {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          last_name: action.last_name,
+          first_name: action.first_name,
+          e_mail: action.e_mail,
+          title: action.title,
+          message: action.message,
+          artwork_id: action.artwork_id,
+        })
+        .then(
+          (response) => {
+            console.log(response)
           },
         )
         .catch(

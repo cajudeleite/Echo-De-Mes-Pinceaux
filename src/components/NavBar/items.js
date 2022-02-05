@@ -5,7 +5,7 @@ const NavItems = () => (
   <>
     <Link name='À Propos de Moi' link='/' />
     <Link name='Galerie' link='/' />
-    <Link name='Contact' link='/' />
+    <Link name='Contact' link='/contact' />
     <Link name='Connexion' link='/' />
   </>
 );

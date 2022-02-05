@@ -36,14 +36,12 @@ const ArtworkForm = () => {
   const collectionsList = useSelector((state) => state.collections.list);
   const statusesList = useSelector((state) => state.statuses.list);
 
-  const postArtworkToAPI = () => dispatch(postArtwork(title, year, technique, collection, status, photo, description));
-
   return (
     <section className="artwork_form">
       <h1 className="artwork_form__title">Publier nouvelle réalisation artistique</h1>
       <form action="" encType='multipart/form-data' method="post" onSubmit={(event) => {
         event.preventDefault();
-        postArtworkToAPI;
+        dispatch(postArtwork(title, year, technique, collection, status, photo, description));
       }}>
         <ArtworkTextInput value={title} setValue={setTitle} label='Titre'/>
         <ArtworkDropdownInput value={year} setValue={setYear} label='Année' list={yearsList}/>
@@ -52,8 +50,8 @@ const ArtworkForm = () => {
         <ArtworkDropdownInput value={status} setValue={setStatus} label='Status' list={statusesList} />
         <ArtworkFileInput setValue={setPhoto} label='Photo'/>
         <ArtworkTextAreaInput value={description} setValue={setDescription} label='Descrition'/>
+        <input type="submit" />
       </form>
-      <button onClick={postArtworkToAPI}></button>
     </section>
   );
 };
