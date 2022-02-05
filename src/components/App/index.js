@@ -2,6 +2,7 @@ import './styles.scss';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../Home';
 import NavBar from '../NavBar';
+import Contact from '../Contact';
 import ArtworkForm from '../ArtworkForm';
 
 const App = () => {
@@ -12,6 +13,9 @@ const App = () => {
       <Switch>
         <Route path='/' exact>
           <Home />
+        </Route>
+        <Route path='/contact' exact>
+          <Contact />
         </Route>
         <Route path='/artwork/create' exact>
           <ArtworkForm />
