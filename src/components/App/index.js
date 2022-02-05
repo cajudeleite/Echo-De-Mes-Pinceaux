@@ -1,13 +1,22 @@
 import './styles.scss';
 import { Route, Switch } from 'react-router-dom';
+import Home from '../Home';
 import NavBar from '../NavBar';
+import ArtworkForm from '../ArtworkForm';
 
 const App = () => {
 
   return(
     <main className="app">
       <NavBar />
-      <h1>Composant : App</h1>
+      <Switch>
+        <Route path='/' exact>
+          <Home />
+        </Route>
+        <Route path='/artwork/create' exact>
+          <ArtworkForm />
+        </Route>
+      </Switch>
     </main>
   );
 };

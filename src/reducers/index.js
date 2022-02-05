@@ -1,12 +1,15 @@
-const initialState = {
-  test: null,
-};
+import { combineReducers } from 'redux';
 
-const reducer = (state = initialState, action = {}) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import yearsReducer from './years';
+import techniquesReducer from './techniques';
+import collectionsReducer from './collections';
+import statusesReducer from './statuses';
 
-export default reducer;
+const rootReducer = combineReducers({
+  years: yearsReducer,
+  techniques: techniquesReducer,
+  collections: collectionsReducer,
+  statuses: statusesReducer,
+});
+
+export default rootReducer;
