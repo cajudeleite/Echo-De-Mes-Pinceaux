@@ -13,7 +13,7 @@ const ArtworkFileInput = ({ setValue, label }) => {
         id={labelLowerCase}
         className='artwork_form__input__file__input'
         onChange={(event) => {
-          setValue(event.target.value);
+          setValue(event.target.files[0]);
         }}
       />
     </div>
