@@ -5,7 +5,7 @@
   background-color: vars.$pampas;
   &__text {
     &__first {
-      padding: 1rem;
+      padding: 2rem;
       p {
         line-height: 20px;
         margin-bottom: 10px;
@@ -15,7 +15,7 @@
   &__image-text {
     &__first {
       display: flex;
-      padding: 1rem 1rem 0;
+      padding: 1rem 2rem 0;
       &__photo {
         width: 50%;
         img {
@@ -42,7 +42,7 @@
     }
     &__second {
       display: flex;
-      padding: 0 1rem;
+      padding: 0 2rem;
       &__photo {
         width: 40%;
         img {
@@ -67,6 +67,67 @@
         }
       }
     }
+    &__third {
+      display: flex;
+      padding: 0 2rem;
+      &__photo {
+        width: 50%;
+        img {
+          width: 100%;
+        }
+      }
+      &__text {
+        width: 50%;
+        padding-left: 2rem;
+        &__container {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          p {
+            line-height: 20px;
+            margin-bottom: 10px;
+          }
+          &__tab {
+            &__first {
+              padding-left: 10%;
+            }
+            &__second {
+              padding-left: 20%;
+            }
+            &__third {
+              padding-left: 30%;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__two-images {
+    display: flex;
+    padding: 2rem;
+    &__first, &__second {
+      width: 50%;
+      img {
+        width: 100%;
+      }
+    }
+    &__first {
+      padding-right: 0.5rem;
+    }
+    &__second {
+      padding-left: 0.5rem;
+    }
+  }
+  &__simpletext {
+    padding: 1rem 2rem;
+  }
+  &__simpleimage {
+    padding: 2rem;
+    text-align: center;
+    img {
+      width: 100%;
+    }
   }
 }
 
@@ -85,6 +146,16 @@
         &__text {
           width: 100%;
           padding: 2rem 0;
+        }
+      }
+      &__third {
+        flex-direction: column-reverse;
+        &__photo {
+          width: 100%;
+        }
+        &__text {
+          width: 100%;
+          padding: 0 0 1rem;
         }
       }
     }
@@ -116,6 +187,12 @@
           width: 100%;
           padding: 2rem 0;
         }
+      }
+    }
+    &__two-images {
+      flex-direction: column;
+      &__first, &__second {
+        width: 100%;
       }
     }
   }

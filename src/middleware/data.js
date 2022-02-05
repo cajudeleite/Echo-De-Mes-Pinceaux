@@ -91,6 +91,9 @@ export const dataMiddleware = (store) => (next) => (action) => {
     case POST_ARTWORK: {
       api
         .post('/artworks', {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
           user_id: 1,
           title: action.title,
           year_id: action.year,

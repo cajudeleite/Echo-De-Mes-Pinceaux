@@ -1,6 +1,10 @@
 import './styles.scss';
 import pinceaux from 'src/assets/photos/2022-01-27_Pinceaux-1.jpg';
 import galets from 'src/assets/photos/2018-Galet.JPG';
+import armoire from 'src/assets/photos/Armoire-Pharmacie.jpg';
+import horloge from 'src/assets/photos/DSC_7388 copie.JPG';
+import bateau from 'src/assets/photos/Coffre-bateau.JPG';
+import chantalExpo from 'src/assets/photos/20191201_EXPO.jpg';
 
 const Home = () => {
 
@@ -42,6 +46,34 @@ const Home = () => {
         </div>
         <div className="home__image-text__second__photo">
           <img src={galets} alt="Galets" />
+        </div>
+      </div>
+      <div className="home__two-images">
+        <div className="home__two-images__first">
+          <img src={armoire} alt="Armoire Pharmacie" />
+        </div>
+        <div className="home__two-images__second">
+          <img src={horloge} alt="Horloge" />
+        </div>
+      </div>
+      <div className='home__simpletext'>
+        <p>Au fil des annèes et des rencontres, des demandes se succédent : meubles de famille ou trouvailles de brocantes, objets á restaurer, insolites, vintages á rénover ou á recycler…</p>
+      </div>
+      <div className="home__simpleimage">
+        <img src={bateau} alt="Coffre bateau" />
+      </div>
+      <div className="home__image-text__third">
+        <div className="home__image-text__third__photo">
+          <img src={chantalExpo} alt="Chantal EXPO" />
+        </div>
+        <div className="home__image-text__third__text">
+          <div className="home__image-text__third__text__container">
+            <p>Autodidacte et camèlèon, je m'adapte et crèe des nouvelles techniques pour la rèalisation de crèations exclusives, uniques et de qualitè pour vous ou pour vos proches.</p>
+            <p>J'aime tester, rechercher, expèrimenter, inventer des techniques mixtes : collages, peintures,</p>
+            <p className='home__image-text__third__text__container__tab__first'>Bois, mètal, cuir,</p>
+            <p className='home__image-text__third__text__container__tab__second'>cailloux, bijoux, joujoux…</p>
+            <p className='home__image-text__third__text__container__tab__third'>on peut peindre sur tout , partout, pour tout.</p>
+          </div>
         </div>
       </div>
     </section>
