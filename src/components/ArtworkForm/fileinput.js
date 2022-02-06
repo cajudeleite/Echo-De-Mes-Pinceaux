@@ -6,12 +6,12 @@ const ArtworkFileInput = ({ setValue, label }) => {
   const labelLowerCase = label.toLowerCase();
 
   return (
-    <div className="artwork_form__input__file">
-      <label htmlFor={labelLowerCase} className='artwork_form__input__file__label'>{label}</label>
+    <div className="artwork_form__container__form__input__file">
+      <label htmlFor={labelLowerCase} className='artwork_form__container__form__input__file__label'>{label}</label>
       <input
         type="file"
         id={labelLowerCase}
-        className='artwork_form__input__file__input'
+        className='artwork_form__container__form__input__file__input'
         onChange={(event) => {
           setValue(event.target.files[0]);
         }}

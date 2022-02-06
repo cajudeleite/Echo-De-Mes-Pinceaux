@@ -1,16 +1,17 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
 
-const ArtworkTextAreaInput = ({ value, setValue, label }) => {
+const ItemText = ({ value, setValue, label, type }) => {
 
   const labelLowerCase = label.toLowerCase();
 
   return (
-    <div className="artwork_form__container__form__input__textarea">
-      <label htmlFor={labelLowerCase} className='artwork_form__container__form__input__textarea__label'>{label}</label>
-      <textarea
+    <div className="connection__container__form__item__text">
+      <label htmlFor={labelLowerCase} className='connection__container__form__item__text__label'>{label}</label>
+      <input
+        type={type}
         id={labelLowerCase}
-        className='artwork_form__container__form__input__textarea__input'
+        className='connection__container__form__item__text__input'
         placeholder=''
         value={value}
         onChange={(event) => {
@@ -21,10 +22,11 @@ const ArtworkTextAreaInput = ({ value, setValue, label }) => {
   );
 };
 
-ArtworkTextAreaInput.propTypes = {
+ItemText.propTypes = {
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 }
 
-export default ArtworkTextAreaInput;
+export default ItemText;

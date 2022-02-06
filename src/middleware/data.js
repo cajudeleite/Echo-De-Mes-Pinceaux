@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 import { simplifyList } from '../utils';
 
@@ -8,6 +9,7 @@ import { GET_COLLECTIONS_FROM_API, setCollections } from '../actions/collection'
 import { GET_STATUSES_FROM_API, setStatus } from '../actions/status';
 import { POST_ARTWORK } from '../actions/artwork';
 import { POST_CONTACT } from '../actions/contact';
+import { AUTHENTICATE } from '../actions/authenticate';
 
 export const dataMiddleware = (store) => (next) => (action) => {
 
@@ -89,10 +91,12 @@ export const dataMiddleware = (store) => (next) => (action) => {
       break;
     }
     case POST_ARTWORK: {
+      const token = localStorage.getItem('token');
       api
         .post('/artworks', {
           headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'Authorization' : token
           },
           user_id: 1,
           title: action.title,
@@ -137,6 +141,30 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .catch(
           (error) => {
             console.log(error);
+          },
+        );
+      next(action);
+      break;
+    }
+    case AUTHENTICATE: {
+      api
+        .post('/authenticate', {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          username: action.username,
+          password: action.password,
+        })
+        .then(
+          (response) => {
+            localStorage.setItem('token', response.data.auth_token);
+            localStorage.setItem('logged', true);
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+            console.log('nop');
           },
         );
       next(action);
