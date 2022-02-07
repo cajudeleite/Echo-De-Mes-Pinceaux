@@ -1,14 +1,29 @@
 @use '/src/styles/vars';
 
 .home {
-  margin: 0 10%;
+  img {
+    border-radius: 5px;
+    border: 15px solid vars.$pesto;
+    border-style: double;
+    background-color: #DF9C34;
+  }
+
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  margin: 0 20%;
   background-color: vars.$pampas;
   &__text {
     &__first {
-      padding: 2rem;
+      padding: 2rem 2rem 0;
       p {
         line-height: 20px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      &__strong {
+        padding-top: 30px;
+        font-weight: bold;
       }
     }
   }
@@ -17,13 +32,13 @@
       display: flex;
       padding: 1rem 2rem 0;
       &__photo {
-        width: 50%;
+        width: 60%;
         img {
           width: 100%;
         }
       }
       &__text {
-        width: 50%;
+        width: 40%;
         padding-left: 2rem;
         &__container {
           height: 100%;
@@ -86,7 +101,7 @@
           justify-content: center;
           p {
             line-height: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
           }
           &__tab {
             &__first {
@@ -131,7 +146,7 @@
   }
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1300px) {
   .home {
     &__image-text {
       &__first {

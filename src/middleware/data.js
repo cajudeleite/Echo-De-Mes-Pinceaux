@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 
 import { simplifyList } from '../utils';
 
@@ -98,14 +97,13 @@ export const dataMiddleware = (store) => (next) => (action) => {
             'Content-Type': 'multipart/form-data',
             'Authorization' : token
           },
-          user_id: 1,
           title: action.title,
           year_id: action.year,
           technique_id: action.technique,
           collection_id: action.collection,
           status_id: action.status,
-          photo: action.photo,
           description: action.description,
+          photo_id: action.photo,
         })
         .then(
           (response) => {
@@ -115,6 +113,7 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .catch(
           (error) => {
             console.log(error);
+            console.log(action.photo);
           },
         );
       next(action);

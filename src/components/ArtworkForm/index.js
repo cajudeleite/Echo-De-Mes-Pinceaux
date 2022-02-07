@@ -6,6 +6,7 @@ import ArtworkDropdownInput from './dropdowninput';
 import ArtworkFileInput from './fileinput';
 import ArtworkTextAreaInput from './textareainput';
 import ModalForm from './modalform';
+import PhotoPreview from './imagepreview';
 
 import { getYearsFromApi } from '../../actions/year';
 import { getTechniquesFromApi } from '../../actions/technique';
@@ -30,7 +31,7 @@ const ArtworkForm = () => {
   const [technique, setTechnique] = useState('1');
   const [collection, setCollection] = useState('1');
   const [status, setStatus] = useState('1');
-  const [photo, setPhoto] = useState(null);
+  const [photo, setPhoto] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalLabel, setModalLabel] = useState('');
   const yearsList = useSelector((state) => state.years.list);
@@ -44,7 +45,8 @@ const ArtworkForm = () => {
         <h1 className="artwork_form__container__title">Publier nouvelle réalisation artistique</h1>
         <form className="artwork_form__container__form" action="" encType='multipart/form-data' method="post" onSubmit={(event) => {
           event.preventDefault();
-          dispatch(postArtwork(title, year, technique, collection, status, photo, description));
+          const photoToString = photo.toString()
+          dispatch(postArtwork(title, year, technique, collection, status, description, photoToString));
         }}>
           <ArtworkTextInput value={title} setValue={setTitle} label='Titre'/>
           <ArtworkDropdownInput value={year} setValue={setYear} label='Année' list={yearsList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel} />
@@ -52,6 +54,8 @@ const ArtworkForm = () => {
           <ArtworkDropdownInput value={collection} setValue={setCollection} label='Collections' list={collectionsList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel} />
           <ArtworkDropdownInput value={status} setValue={setStatus} label='Status' list={statusesList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel}/>
           <ArtworkFileInput setValue={setPhoto} label='Photo'/>
+
+          {(photo.length > 0) && <PhotoPreview photo_id={photo}/>}
           <ArtworkTextAreaInput value={description} setValue={setDescription} label='Descrition'/>
           <input type="submit" className="artwork_form__container__form__submit" />
         </form>

@@ -3,7 +3,22 @@ import PropTypes from 'prop-types';
 
 const ArtworkFileInput = ({ setValue, label }) => {
 
+  const photoArray = [];
+
   const labelLowerCase = label.toLowerCase();
+
+  const myWidget = window.cloudinary.createUploadWidget(
+    {
+      cloudName: "cajudeleite",
+      uploadPreset: "echopinceaux"
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        photoArray.push(result.info.public_id);
+        setValue(photoArray);
+      }
+    }
+  );
 
   return (
     <div className="artwork_form__container__form__input__file">
@@ -12,8 +27,9 @@ const ArtworkFileInput = ({ setValue, label }) => {
         type="file"
         id={labelLowerCase}
         className='artwork_form__container__form__input__file__input'
-        onChange={(event) => {
-          setValue(event.target.files[0]);
+        onClick={(event) => {
+          event.preventDefault();
+          myWidget.open();
         }}
       />
     </div>
