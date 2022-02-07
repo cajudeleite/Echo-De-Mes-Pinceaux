@@ -10,3 +10,10 @@ export const setCollections = (newCollectionsValue) => ({
   type: SET_COLLECTIONS,
   newCollectionsValue,
 });
+
+export const POST_COLLECTION = 'POST_COLLECTION';
+
+export const postCollection = (name) => ({
+  type: POST_COLLECTION,
+  name,
+});

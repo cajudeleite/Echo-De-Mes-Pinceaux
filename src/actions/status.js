@@ -10,3 +10,10 @@ export const setStatus = (newStatusValue) => ({
   type: SET_STATUS,
   newStatusValue,
 });
+
+export const POST_STATUS = 'POST_STATUS';
+
+export const postStatus = (name) => ({
+  type: POST_STATUS,
+  name,
+});

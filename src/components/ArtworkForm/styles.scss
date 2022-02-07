@@ -2,6 +2,7 @@
 
 .artwork_form {
   width: 100%;
+  min-height: calc(100vh - 5rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,6 +101,52 @@
         padding: 0 1rem;
         margin: 1rem 0 0;
         cursor: pointer;
+      }
+      &__modal {
+        margin: 3rem 0;
+        border-radius: 5px;
+        width: 50%;
+        height: fit-content;
+        background-color: vars.$pampas;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &__title {
+          font-family: vars.$title;
+          font-size: 25px;
+          font-weight: 600;
+          text-align: center;
+          padding: 2rem 0;
+        }
+        &__form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-bottom: 2rem;
+          &__label {
+            padding-bottom: 5px;
+          }
+          &__label::after {
+            content: ' :';
+          }
+          &__input {
+            border-radius: 5px;
+            border: 1px solid vars.$pesto;
+            height: 2rem;
+          }
+          &__submit {
+            color: vars.$rock-spray;
+            background-color: vars.$sea-buckthorn;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            font-family: vars.$title;
+            height: 2rem;
+            padding: 0 1rem;
+            margin: 1rem 0 0;
+            cursor: pointer;
+          }
+        }
       }
     }
   }
