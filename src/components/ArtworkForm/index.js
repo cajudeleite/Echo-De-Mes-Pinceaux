@@ -5,7 +5,7 @@ import ArtworkTextInput from './textinput';
 import ArtworkDropdownInput from './dropdowninput';
 import ArtworkFileInput from './fileinput';
 import ArtworkTextAreaInput from './textareainput';
-
+import ModalForm from './modalform';
 
 import { getYearsFromApi } from '../../actions/year';
 import { getTechniquesFromApi } from '../../actions/technique';
@@ -31,6 +31,8 @@ const ArtworkForm = () => {
   const [collection, setCollection] = useState('1');
   const [status, setStatus] = useState('1');
   const [photo, setPhoto] = useState(null);
+  const [modal, setModal] = useState(false);
+  const [modalLabel, setModalLabel] = useState('');
   const yearsList = useSelector((state) => state.years.list);
   const techniquesList = useSelector((state) => state.techniques.list);
   const collectionsList = useSelector((state) => state.collections.list);
@@ -38,22 +40,23 @@ const ArtworkForm = () => {
 
   return (
     <section className="artwork_form">
-      <div className="artwork_form__container">
+      {!modal && <div className="artwork_form__container">
         <h1 className="artwork_form__container__title">Publier nouvelle réalisation artistique</h1>
         <form className="artwork_form__container__form" action="" encType='multipart/form-data' method="post" onSubmit={(event) => {
           event.preventDefault();
           dispatch(postArtwork(title, year, technique, collection, status, photo, description));
         }}>
           <ArtworkTextInput value={title} setValue={setTitle} label='Titre'/>
-          <ArtworkDropdownInput value={year} setValue={setYear} label='Année' list={yearsList}/>
-          <ArtworkDropdownInput value={technique} setValue={setTechnique} label='Techniques' list={techniquesList} />
-          <ArtworkDropdownInput value={collection} setValue={setCollection} label='Collections' list={collectionsList} />
-          <ArtworkDropdownInput value={status} setValue={setStatus} label='Status' list={statusesList} />
+          <ArtworkDropdownInput value={year} setValue={setYear} label='Année' list={yearsList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel} />
+          <ArtworkDropdownInput value={technique} setValue={setTechnique} label='Techniques' list={techniquesList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel} />
+          <ArtworkDropdownInput value={collection} setValue={setCollection} label='Collections' list={collectionsList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel} />
+          <ArtworkDropdownInput value={status} setValue={setStatus} label='Status' list={statusesList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel}/>
           <ArtworkFileInput setValue={setPhoto} label='Photo'/>
           <ArtworkTextAreaInput value={description} setValue={setDescription} label='Descrition'/>
           <input type="submit" className="artwork_form__container__form__submit" />
         </form>
-      </div>
+      </div>}
+      {modal && <ModalForm label={modalLabel} modal={modal} setModal={setModal} />}
     </section>
   );
 };

@@ -10,3 +10,11 @@ export const setTechniques = (newTechniquesValue) => ({
   type: SET_TECHNIQUES,
   newTechniquesValue,
 });
+
+
+export const POST_TECHNIQUE = 'POST_TECHNIQUE';
+
+export const postTechnique = (name) => ({
+  type: POST_TECHNIQUE,
+  name,
+});

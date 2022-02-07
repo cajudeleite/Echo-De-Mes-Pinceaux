@@ -10,3 +10,10 @@ export const setYears = (newYearsValue) => ({
   type: SET_YEARS,
   newYearsValue,
 });
+
+export const POST_YEAR = 'POST_YEAR';
+
+export const postYear = (name) => ({
+  type: POST_YEAR,
+  name,
+});

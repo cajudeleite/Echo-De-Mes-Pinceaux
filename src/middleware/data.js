@@ -3,10 +3,10 @@ import { useHistory } from 'react-router-dom';
 
 import { simplifyList } from '../utils';
 
-import { GET_YEARS_FROM_API, setYears } from '../actions/year';
-import { GET_TECHNIQUES_FROM_API, setTechniques } from '../actions/technique';
-import { GET_COLLECTIONS_FROM_API, setCollections } from '../actions/collection';
-import { GET_STATUSES_FROM_API, setStatus } from '../actions/status';
+import { GET_YEARS_FROM_API, setYears, POST_YEAR } from '../actions/year';
+import { GET_TECHNIQUES_FROM_API, setTechniques, POST_TECHNIQUE } from '../actions/technique';
+import { GET_COLLECTIONS_FROM_API, setCollections, POST_COLLECTION } from '../actions/collection';
+import { GET_STATUSES_FROM_API, setStatus, POST_STATUS } from '../actions/status';
 import { POST_ARTWORK } from '../actions/artwork';
 import { POST_CONTACT } from '../actions/contact';
 import { AUTHENTICATE } from '../actions/authenticate';
@@ -165,6 +165,95 @@ export const dataMiddleware = (store) => (next) => (action) => {
           (error) => {
             console.log(error);
             console.log('nop');
+          },
+        );
+      next(action);
+      break;
+    }
+    case POST_YEAR: {
+      const token = localStorage.getItem('token');
+      api
+        .post('/years', {
+          headers: {
+            'Authorization': token
+          },
+          name: action.name,
+        })
+        .then(
+          (response) => {
+            console.log(response)
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+            console.log(action);
+          },
+        );
+      next(action);
+      break;
+    }
+    case POST_TECHNIQUE: {
+      const token = localStorage.getItem('token');
+      api
+        .post('/techniques', {
+          headers: {
+            'Authorization': token
+          },
+          name: action.name,
+        })
+        .then(
+          (response) => {
+            console.log(response)
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+          },
+        );
+      next(action);
+      break;
+    }
+    case POST_COLLECTION: {
+      const token = localStorage.getItem('token');
+      api
+        .post('/collections', {
+          headers: {
+            'Authorization': token
+          },
+          name: action.name,
+        })
+        .then(
+          (response) => {
+            console.log(response)
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+          },
+        );
+      next(action);
+      break;
+    }
+    case POST_STATUS: {
+      const token = localStorage.getItem('token');
+      api
+        .post('/statuses', {
+          headers: {
+            'Authorization': token
+          },
+          name: action.name,
+        })
+        .then(
+          (response) => {
+            console.log(response)
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
           },
         );
       next(action);
