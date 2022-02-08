@@ -5,21 +5,27 @@ import armoire from 'src/assets/photos/Armoire-Pharmacie.jpg';
 import horloge from 'src/assets/photos/DSC_7388 copie.JPG';
 import bateau from 'src/assets/photos/Coffre-bateau.JPG';
 import chantalExpo from 'src/assets/photos/20191201_EXPO.jpg';
+import bidon from 'src/assets/photos/2018-Bidon de lait-Bernadette copie.JPG';
 
 const Home = () => {
+
+  const logged = localStorage.getItem('logged') === 'true';
 
   return (
     <section className="home">
       <div className="home__text__first">
+        {logged && <p>Je suis bien connectè</p>}
         <p>Bienvenue á « L'ècho de mes pinceaux », sur mon site qui voudrait être avant tout un partage de mes passions !</p>
-        <p>Pour cela, j'essaierai de le mettre bien á jour au fur et á mesure de mes crèations, et je serai contente en retour de rèpondre á vos commentaires.</p>
+        <div className="home__simpleimage__first">
+          <img src={pinceaux} alt="Coffre bateau" />
+        </div>
         <p>Vous aurez remarquè que mon site n'est pas d'abord un site de vente. Certes, il n'en n'exclut pas la question, mais mon ambition est avant tout de faire connaître et d'exposer le travail de mes pinceaux.</p>
         <p>« L'ècho de mes pinceaux » est aussi un hommage á vous tous, á tous mes amis, á toutes les rencontres
         proches et lointaines que j'ai pu faire et jusqu'au bout du monde, tous ceux qui m'ont inspirèe et aidèe du fil du temps, á puiser moi-même aux sources de l'èlan crèateur.</p>
         <p>C'est un rèel plaisir de partager avec vous les joies crèatrices d'un univers oú la peinture et le dessin ont ètè mes compagnons depuis toujours. Aprés avoir consacrè une bonne partie de ma vie professionnelle á l'enseignement universitaire et contemplè les œuvres d'art, j'ai eu envie de mettre mes pinceaux á l'œuvre.</p>
         <p>Ce site vient de la question rècurrente entendue lors de mes expositions : « oú peut-on voir ce que vous faites ? ».</p>
         <p>Il ètait donc temps de m'y mettre.</p>
-        <p>Une marche á suivre trés souple vous permet de dècouvrir les œuvres par <u>dates</u>, <u>thémes</u> ou <u>techniques</u>.</p>
+        <p>Une marche á suivre trés souple vous permet de dècouvrir les œuvres par <u>dates</u>, <u>collections</u> ou <u>techniques</u>.</p>
         <p>N'hèsitez pas á me <u>contacter</u>, ou laisser á votre tour un petit ècho á celui de mes pinceaux…</p>
         <p className='home__text__first__strong'>Une grande diversitè dans les techniques, les supports et les dècors.</p>
         <p>Un univers variè qui me rend inclassable.</p>
@@ -27,7 +33,7 @@ const Home = () => {
       </div>
       <div className="home__image-text__first">
         <div className="home__image-text__first__photo">
-          <img src={pinceaux} alt="Mes pinceaux" />
+          <img src={bidon} alt="Mes pinceaux" />
         </div>
         <div className="home__image-text__first__text">
           <div className="home__image-text__first__text__container">
@@ -59,7 +65,7 @@ const Home = () => {
       <div className='home__simpletext'>
         <p>Au fil des annèes et des rencontres, des demandes se succédent : meubles de famille ou trouvailles de brocantes, objets á restaurer, insolites, vintages á rénover ou á recycler…</p>
       </div>
-      <div className="home__simpleimage">
+      <div className="home__simpleimage__second">
         <img src={bateau} alt="Coffre bateau" />
       </div>
       <div className="home__image-text__third">

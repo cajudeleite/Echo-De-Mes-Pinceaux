@@ -32,13 +32,13 @@
       display: flex;
       padding: 1rem 2rem 0;
       &__photo {
-        width: 60%;
+        width: 40%;
         img {
           width: 100%;
         }
       }
       &__text {
-        width: 40%;
+        width: 60%;
         padding-left: 2rem;
         &__container {
           height: 100%;
@@ -138,10 +138,19 @@
     padding: 1rem 2rem;
   }
   &__simpleimage {
-    padding: 2rem;
-    text-align: center;
-    img {
-      width: 100%;
+    &__first {
+      padding: 0 2rem 1rem;
+      text-align: center;
+      img {
+        width: 100%;
+      }
+    }
+    &__second {
+      padding: 2rem;
+      text-align: center;
+      img {
+        width: 100%;
+      }
     }
   }
 }
