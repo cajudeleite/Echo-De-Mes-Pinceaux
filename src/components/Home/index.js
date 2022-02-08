@@ -9,13 +9,10 @@ import bidon from 'src/assets/photos/2018-Bidon de lait-Bernadette copie.JPG';
 
 const Home = () => {
 
-  const logged = localStorage.getItem('logged') === 'true';
-
   return (
     <section className="home">
       <div className="home__text__first">
-        {logged && <p>Je suis bien connectè</p>}
-        <p>Bienvenue á « L'ècho de mes pinceaux », sur mon site qui voudrait être avant tout un partage de mes passions !</p>
+        <p className='home__text__first__strong'>Bienvenue á « L'ècho de mes pinceaux », sur mon site qui voudrait être avant tout un partage de mes passions !</p>
         <div className="home__simpleimage__first">
           <img src={pinceaux} alt="Coffre bateau" />
         </div>
