@@ -1,15 +1,17 @@
+import { SET_ARTWORKS } from "../actions/artwork";
+
 const initialState = {
   list: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    /*case SET_ARTWORK: {
+    case SET_ARTWORKS: {
       return {
         ...state,
-        list: action.newCollectionsValue,
+        list: action.array,
       };
-    }*/
+    }
     default:
       return state;
   }

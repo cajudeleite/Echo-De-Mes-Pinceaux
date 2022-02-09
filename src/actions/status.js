@@ -11,6 +11,20 @@ export const setStatus = (newStatusValue) => ({
   newStatusValue,
 });
 
+export const GET_STATUS_NAME = 'GET_STATUS_NAME';
+
+export const getStatusName = (id) => ({
+  type: GET_STATUS_NAME,
+  id,
+});
+
+export const SET_STATUS_NAME = 'SET_STATUS_NAME';
+
+export const setStatusName = (statusName) => ({
+  type: SET_STATUS_NAME,
+  statusName,
+});
+
 export const POST_STATUS = 'POST_STATUS';
 
 export const postStatus = (name) => ({

@@ -11,6 +11,19 @@ export const setTechniques = (newTechniquesValue) => ({
   newTechniquesValue,
 });
 
+export const GET_TECHNIQUE_NAME = 'GET_TECHNIQUE_NAME';
+
+export const getTechniqueName = (id) => ({
+  type: GET_TECHNIQUE_NAME,
+  id,
+});
+
+export const SET_TECHNIQUE_NAME = 'SET_TECHNIQUE_NAME';
+
+export const setTechniqueName = (techniqueName) => ({
+  type: SET_TECHNIQUE_NAME,
+  techniqueName,
+});
 
 export const POST_TECHNIQUE = 'POST_TECHNIQUE';
 

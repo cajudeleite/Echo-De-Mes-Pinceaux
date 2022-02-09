@@ -11,6 +11,20 @@ export const setCollections = (newCollectionsValue) => ({
   newCollectionsValue,
 });
 
+export const GET_COLLECTION_NAME = 'GET_COLLECTION_NAME';
+
+export const getCollectionName = (id) => ({
+  type: GET_COLLECTION_NAME,
+  id,
+});
+
+export const SET_COLLECTION_NAME = 'SET_COLLECTION_NAME';
+
+export const setCollectionName = (collectionName) => ({
+  type: SET_COLLECTION_NAME,
+  collectionName,
+});
+
 export const POST_COLLECTION = 'POST_COLLECTION';
 
 export const postCollection = (name) => ({

@@ -1,7 +1,8 @@
-import { SET_STATUS } from "../actions/status";
+import { SET_STATUS, SET_STATUS_NAME } from "../actions/status";
 
 const initialState = {
   list: [],
+  statusName: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -10,6 +11,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         list: action.newStatusValue,
+      };
+    }
+    case SET_STATUS_NAME: {
+      return {
+        ...state,
+        statusName: action.statusName,
       };
     }
     default:

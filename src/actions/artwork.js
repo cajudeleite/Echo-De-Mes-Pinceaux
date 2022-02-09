@@ -10,3 +10,16 @@ export const postArtwork = (title, year, technique, collection, status, descript
   description,
   photo,
 });
+
+export const GET_ARTWORKS = 'GET_ARTWORKS';
+
+export const getArtworks = () => ({
+  type: GET_ARTWORKS,
+});
+
+export const SET_ARTWORKS = 'SET_ARTWORKS';
+
+export const setArtworks = (array) => ({
+  type: SET_ARTWORKS,
+  array,
+});

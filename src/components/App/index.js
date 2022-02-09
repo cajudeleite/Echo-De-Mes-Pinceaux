@@ -5,6 +5,7 @@ import NavBar from '../NavBar';
 import Contact from '../Contact';
 import Connection from '../Connection';
 import ArtworkForm from '../ArtworkForm';
+import ArtworkPage from '../Artwork';
 
 const App = () => {
 
@@ -23,9 +24,12 @@ const App = () => {
         <Route path='/connection' exact>
           <Connection />
         </Route>
-        <Route path='/artwork/create' exact>
-          <ArtworkForm />
+        <Route path='/artwork' exact>
+          <ArtworkPage />
         </Route>
+        {logged && <Route path='/artwork/create' exact>
+          <ArtworkForm />
+        </Route>}
       </Switch>
     </main>
   );
