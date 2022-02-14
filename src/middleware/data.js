@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-import { simplifyList, simplifyArtworks } from '../utils';
+import { simplifyList } from '../utils';
 
-import { GET_YEARS_FROM_API, setYears, POST_YEAR, GET_YEAR_NAME, setYearName } from '../actions/year';
-import { GET_TECHNIQUES_FROM_API, setTechniques, POST_TECHNIQUE, GET_TECHNIQUE_NAME, setTechniqueName } from '../actions/technique';
-import { GET_COLLECTIONS_FROM_API, setCollections, POST_COLLECTION, GET_COLLECTION_NAME, setCollectionName } from '../actions/collection';
-import { GET_STATUSES_FROM_API, setStatus, POST_STATUS, GET_STATUS_NAME, setStatusName } from '../actions/status';
-import { POST_ARTWORK, GET_ARTWORKS, setArtworks } from '../actions/artwork';
+import { GET_YEARS_FROM_API, setYears, POST_YEAR } from '../actions/year';
+import { GET_TECHNIQUES_FROM_API, setTechniques, POST_TECHNIQUE } from '../actions/technique';
+import { GET_COLLECTIONS_FROM_API, setCollections, POST_COLLECTION } from '../actions/collection';
+import { GET_STATUSES_FROM_API, setStatus, POST_STATUS } from '../actions/status';
+import { POST_ARTWORK } from '../actions/artwork';
 import { POST_CONTACT } from '../actions/contact';
 import { AUTHENTICATE } from '../actions/authenticate';
 
@@ -248,92 +248,6 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .then(
           (response) => {
             console.log(response)
-          },
-        )
-        .catch(
-          (error) => {
-            console.log(error);
-          },
-        );
-      next(action);
-      break;
-    }
-    case GET_ARTWORKS: {
-      api
-        .get('/artworks')
-        .then(
-          (response) => {
-            const artworkArray = response.data;
-            const simplifiedArray = simplifyArtworks(artworkArray);
-            store.dispatch(setArtworks(simplifiedArray));
-          },
-        )
-        .catch(
-          (error) => {
-            console.log(error);
-          },
-        );
-      next(action);
-      break;
-    }
-    case GET_YEAR_NAME: {
-      api
-        .get(`/years/${action.id}`)
-        .then(
-          (response) => {
-            const yearName = response.data.name;
-            store.dispatch(setYearName(yearName));
-          },
-        )
-        .catch(
-          (error) => {
-            console.log(error);
-          },
-        );
-      next(action);
-      break;
-    }
-    case GET_TECHNIQUE_NAME: {
-      api
-        .get(`/techniques/${action.id}`)
-        .then(
-          (response) => {
-            const techniqueName = response.data.name;
-            store.dispatch(setTechniqueName(techniqueName));
-          },
-        )
-        .catch(
-          (error) => {
-            console.log(error);
-          },
-        );
-      next(action);
-      break;
-    }
-    case GET_COLLECTION_NAME: {
-      api
-        .get(`/collections/${action.id}`)
-        .then(
-          (response) => {
-            const collectionName = response.data.name;
-            store.dispatch(setCollectionName(collectionName));
-          },
-        )
-        .catch(
-          (error) => {
-            console.log(error);
-          },
-        );
-      next(action);
-      break;
-    }
-    case GET_STATUS_NAME: {
-      api
-        .get(`/statuses/${action.id}`)
-        .then(
-          (response) => {
-            const statusName = response.data.name;
-            store.dispatch(setStatusName(statusName));
           },
         )
         .catch(

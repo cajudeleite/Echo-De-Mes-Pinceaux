@@ -7,11 +7,11 @@ import statusesReducer from './statuses';
 import artworksReducer from './artworks';
 
 const rootReducer = combineReducers({
-  artworks: artworksReducer,
-  years: yearsReducer,
-  techniques: techniquesReducer,
-  collections: collectionsReducer,
-  statuses: statusesReducer,
+  artwork: artworksReducer,
+  year: yearsReducer,
+  technique: techniquesReducer,
+  collection: collectionsReducer,
+  status: statusesReducer,
 });
 
 export default rootReducer;

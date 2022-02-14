@@ -26,7 +26,6 @@ const ModalForm = ({ label, modal, setModal }) => {
       <h2 className="artwork_form__container__form__modal__title">{title}</h2>
       <form action="" className="artwork_form__container__form__modal__form" onSubmit={(event) => {
         event.preventDefault();
-        console.log(inputValue);
         if (label === 'année') {
           dispatch(postYear(inputValue));
         } else if (label === 'technique') {

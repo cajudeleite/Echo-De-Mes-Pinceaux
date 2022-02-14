@@ -1,8 +1,7 @@
-import { SET_TECHNIQUES, SET_TECHNIQUE_NAME } from "../actions/technique";
+import { SET_TECHNIQUES } from "../actions/technique";
 
 const initialState = {
   list: [],
-  techniqueName: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -11,12 +10,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         list: action.newTechniquesValue,
-      };
-    }
-    case SET_TECHNIQUE_NAME: {
-      return {
-        ...state,
-        techniqueName: action.techniqueName,
       };
     }
     default:

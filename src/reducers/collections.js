@@ -1,8 +1,7 @@
-import { SET_COLLECTIONS, SET_COLLECTION_NAME } from "../actions/collection";
+import { SET_COLLECTIONS } from "../actions/collection";
 
 const initialState = {
   list: [],
-  collectionName: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -11,12 +10,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         list: action.newCollectionsValue,
-      };
-    }
-    case SET_COLLECTION_NAME: {
-      return {
-        ...state,
-        collectionName: action.collectionName,
       };
     }
     default:

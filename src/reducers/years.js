@@ -1,8 +1,7 @@
-import { SET_YEARS, SET_YEAR_NAME } from "../actions/year";
+import { SET_YEARS } from "../actions/year";
 
 const initialState = {
   list: [],
-  yearName: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -11,12 +10,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         list: action.newYearsValue,
-      };
-    }
-    case SET_YEAR_NAME: {
-      return {
-        ...state,
-        yearName: action.yearName,
       };
     }
     default:
