@@ -1,0 +1,157 @@
+@use '/src/styles/vars';
+
+.artwork {
+  width: 70%;
+  background-color: vars.$pampas;
+  &__create {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    &__button {
+      color: vars.$rock-spray;
+      background-color: vars.$sea-buckthorn;
+      border: none;
+      border-radius: 5px;
+      font-size: 25px;
+      font-family: vars.$title;
+      height: 3rem;
+      padding: 0 1rem;
+      margin: 1rem 0 0;
+      cursor: pointer;
+      &__plus {
+        font-weight: bold;
+      }
+    }
+  }
+  &__list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    &__photo {
+      margin: 2rem;
+      border-radius: 5px;
+      border: 15px solid vars.$pesto;
+      border-style: double;
+      background-color: vars.$pampas;
+      height: 300px;
+    }
+  }
+  &__item {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: vars.$pampas;
+    &__top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      &__back_button {
+        color: vars.$pesto;
+        background: none;
+        border: none;
+        font-family: vars.$title;
+        font-size: 23px;
+      }
+      &__last_buttons {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        &__edit {
+          color: vars.$rock-spray;
+          background-color: vars.$sea-buckthorn;
+          border: none;
+          border-radius: 5px;
+          font-size: 20px;
+          font-family: vars.$title;
+          height: 2rem;
+          padding: 0 1rem;
+        }
+        &__delete {
+          color: vars.$sea-buckthorn;
+          background-color: vars.$rock-spray;
+          border: none;
+          border-radius: 5px;
+          font-size: 20px;
+          font-family: vars.$title;
+          height: 2rem;
+          padding: 0 1rem;
+          margin-left: 2rem;
+        }
+      }
+    }
+    &__photo {
+      width: 40%;
+      &__image {
+        object-fit: cover;
+        min-height: 250px;
+        width: 100%;
+        border-radius: 5px;
+        border: 15px solid vars.$pesto;
+        border-style: double;
+        background-color: #DF9C34;
+      }
+      &__arrow {
+        color: vars.$pampas;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        bottom: 50%;
+        width: 100%;
+        padding: 0 2rem;
+        font-size: 2rem;
+      }
+    }
+    &__text {
+      padding-right: 3rem;
+      width: 60%;
+      &__title {
+        font-family: vars.$title;
+        font-size: 2rem;
+        font-weight: bold;
+        color: vars.$rock-spray;
+        padding-bottom: 1rem;
+      }
+      &__dateandtechnique {
+        font-style: italic;
+        padding-bottom: 1rem;
+      }
+      &__collection {
+        padding-bottom: 1rem;
+      }
+      &__status {
+        color: vars.$pewter;
+        padding-bottom: 1rem;
+      }
+      &__description {
+        text-align: justify;
+        text-justify: inter-word;
+      }
+    }
+  }
+}
+
+/*@media screen and (max-width: 1250px) {
+  .artwork {
+    &__item {
+      &__photo {
+        padding: 0 2rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .artwork {
+    &__item {
+      flex-direction: column;
+      &__photo {
+        width: 100%;
+      }
+      &__text {
+        width: 100%;
+      }
+    }
+  }
+}*/

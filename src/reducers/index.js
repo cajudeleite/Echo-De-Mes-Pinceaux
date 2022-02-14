@@ -4,12 +4,14 @@ import yearsReducer from './years';
 import techniquesReducer from './techniques';
 import collectionsReducer from './collections';
 import statusesReducer from './statuses';
+import artworksReducer from './artworks';
 
 const rootReducer = combineReducers({
-  years: yearsReducer,
-  techniques: techniquesReducer,
-  collections: collectionsReducer,
-  statuses: statusesReducer,
+  artwork: artworksReducer,
+  year: yearsReducer,
+  technique: techniquesReducer,
+  collection: collectionsReducer,
+  status: statusesReducer,
 });
 
 export default rootReducer;

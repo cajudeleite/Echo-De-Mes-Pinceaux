@@ -11,7 +11,6 @@ export const setTechniques = (newTechniquesValue) => ({
   newTechniquesValue,
 });
 
-
 export const POST_TECHNIQUE = 'POST_TECHNIQUE';
 
 export const postTechnique = (name) => ({

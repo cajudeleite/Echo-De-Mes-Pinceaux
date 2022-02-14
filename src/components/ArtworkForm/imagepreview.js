@@ -14,7 +14,7 @@ const PhotoPreview = ({ photo_id }) => {
 
   return (
     <div className="artwork_form__container__form__photo_preview">
-      {photo_id.map((item) => (<AdvancedImage cldImg={cld.image(item).resize(fill().width(250).height(250))} />))}
+      {photo_id.map((item) => <AdvancedImage cldImg={cld.image(item).resize(fill().width(250).height(250))} />,)}
     </div>
   );
 };

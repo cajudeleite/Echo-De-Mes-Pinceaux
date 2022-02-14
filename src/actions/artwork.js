@@ -10,3 +10,10 @@ export const postArtwork = (title, year, technique, collection, status, descript
   description,
   photo,
 });
+
+export const SET_ITEM_ID = 'SET_ITEM_ID';
+
+export const setItemId = (id) => ({
+  type: SET_ITEM_ID,
+  id,
+})

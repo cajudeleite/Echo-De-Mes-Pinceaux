@@ -1,15 +1,17 @@
+import { SET_ITEM_ID } from "../actions/artwork";
+
 const initialState = {
-  list: [],
+  item_id: 1,
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    /*case SET_ARTWORK: {
+    case SET_ITEM_ID: {
       return {
         ...state,
-        list: action.newCollectionsValue,
+        item_id: action.id,
       };
-    }*/
+    }
     default:
       return state;
   }

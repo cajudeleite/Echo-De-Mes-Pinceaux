@@ -34,10 +34,10 @@ const ArtworkForm = () => {
   const [photo, setPhoto] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalLabel, setModalLabel] = useState('');
-  const yearsList = useSelector((state) => state.years.list);
-  const techniquesList = useSelector((state) => state.techniques.list);
-  const collectionsList = useSelector((state) => state.collections.list);
-  const statusesList = useSelector((state) => state.statuses.list);
+  const yearsList = useSelector((state) => state.year.list);
+  const techniquesList = useSelector((state) => state.technique.list);
+  const collectionsList = useSelector((state) => state.collection.list);
+  const statusesList = useSelector((state) => state.status.list);
 
   return (
     <section className="artwork_form">
