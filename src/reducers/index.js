@@ -5,6 +5,7 @@ import techniquesReducer from './techniques';
 import collectionsReducer from './collections';
 import statusesReducer from './statuses';
 import artworksReducer from './artworks';
+import contactReducer from './contact';
 
 const rootReducer = combineReducers({
   artwork: artworksReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   technique: techniquesReducer,
   collection: collectionsReducer,
   status: statusesReducer,
+  contact: contactReducer,
 });
 
 export default rootReducer;
