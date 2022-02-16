@@ -21,3 +21,17 @@ export const simplifyArtworks = (artworks) => (
     }),
   )
 );
+
+export const simplifyContact = (list) => (
+  list.map(
+    (item) => ({
+      id: item.id,
+      last_name: item.last_name,
+      first_name: item.first_name,
+      e_mail: item.e_mail,
+      title: item.title,
+      message: item.message,
+      artwork_id: item.artwork_id,
+    }),
+  )
+);

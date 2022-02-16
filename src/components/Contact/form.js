@@ -12,7 +12,7 @@ const ContactForm = () => {
   const [eMail, setEMail] = useState('');
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
-  const [artworkId, setArtworkId] = useState(19);
+  const [artworkId, setArtworkId] = useState(1);
   const dispatch = useDispatch();
 
   return (

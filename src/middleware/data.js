@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-import { simplifyList } from '../utils';
+import { simplifyList, simplifyContact } from '../utils';
 
 import { GET_YEARS_FROM_API, setYears, POST_YEAR } from '../actions/year';
 import { GET_TECHNIQUES_FROM_API, setTechniques, POST_TECHNIQUE } from '../actions/technique';
 import { GET_COLLECTIONS_FROM_API, setCollections, POST_COLLECTION } from '../actions/collection';
 import { GET_STATUSES_FROM_API, setStatus, POST_STATUS } from '../actions/status';
 import { POST_ARTWORK } from '../actions/artwork';
-import { POST_CONTACT } from '../actions/contact';
+import { POST_CONTACT, GET_CONTACT, setContact } from '../actions/contact';
 import { AUTHENTICATE } from '../actions/authenticate';
 
 export const dataMiddleware = (store) => (next) => (action) => {
@@ -19,7 +19,8 @@ export const dataMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_YEARS_FROM_API: {
       api
-        .get('/years')
+        .get('/years', {
+        })
         .then(
           (response) => {
             const yearsList = response.data;
@@ -91,20 +92,23 @@ export const dataMiddleware = (store) => (next) => (action) => {
     }
     case POST_ARTWORK: {
       const token = localStorage.getItem('token');
+      const data = {
+        title: action.title,
+        year_id: action.year,
+        technique_id: action.technique,
+        collection_id: action.collection,
+        status_id: action.status,
+        description: action.description,
+        photo_id: action.photo,
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }
+      };
       api
-        .post('/artworks', {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'Authorization' : token
-          },
-          title: action.title,
-          year_id: action.year,
-          technique_id: action.technique,
-          collection_id: action.collection,
-          status_id: action.status,
-          description: action.description,
-          photo_id: action.photo,
-        })
+        .post('/artworks', data, options)
         .then(
           (response) => {
             console.log(response)
@@ -113,25 +117,27 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .catch(
           (error) => {
             console.log(error);
-            console.log(action.photo);
           },
         );
       next(action);
       break;
     }
     case POST_CONTACT: {
+      const data = {
+        last_name: action.last_name,
+        first_name: action.first_name,
+        e_mail: action.e_mail,
+        title: action.title,
+        message: action.message,
+        artwork_id: action.artwork_id,
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      };
       api
-        .post('/contacts', {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-          last_name: action.last_name,
-          first_name: action.first_name,
-          e_mail: action.e_mail,
-          title: action.title,
-          message: action.message,
-          artwork_id: action.artwork_id,
-        })
+        .post('/contacts', data, options)
         .then(
           (response) => {
             console.log(response)
@@ -146,14 +152,17 @@ export const dataMiddleware = (store) => (next) => (action) => {
       break;
     }
     case AUTHENTICATE: {
+      const data = {
+        username: action.username,
+        password: action.password,
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      };
       api
-        .post('/authenticate', {
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          username: action.username,
-          password: action.password,
-        })
+        .post('/authenticate', data, options)
         .then(
           (response) => {
             localStorage.setItem('token', response.data.auth_token);
@@ -163,7 +172,6 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .catch(
           (error) => {
             console.log(error);
-            console.log('nop');
           },
         );
       next(action);
@@ -171,13 +179,17 @@ export const dataMiddleware = (store) => (next) => (action) => {
     }
     case POST_YEAR: {
       const token = localStorage.getItem('token');
+      const data = {
+        name: action.name,
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }
+      };
       api
-        .post('/years', {
-          headers: {
-            'Authorization': token
-          },
-          name: action.name,
-        })
+        .post('/years', data, options)
         .then(
           (response) => {
             console.log(response)
@@ -186,7 +198,6 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .catch(
           (error) => {
             console.log(error);
-            console.log(action);
           },
         );
       next(action);
@@ -194,13 +205,17 @@ export const dataMiddleware = (store) => (next) => (action) => {
     }
     case POST_TECHNIQUE: {
       const token = localStorage.getItem('token');
+      const data = {
+        name: action.name,
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }
+      };
       api
-        .post('/techniques', {
-          headers: {
-            'Authorization': token
-          },
-          name: action.name,
-        })
+        .post('/techniques', data, options)
         .then(
           (response) => {
             console.log(response)
@@ -216,13 +231,44 @@ export const dataMiddleware = (store) => (next) => (action) => {
     }
     case POST_COLLECTION: {
       const token = localStorage.getItem('token');
+      const data = {
+        name: action.name,
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }
+      };
       api
-        .post('/collections', {
-          headers: {
-            'Authorization': token
+        .post('/collections', data, options)
+        .then(
+          (response) => {
+            console.log(response)
           },
-          name: action.name,
-        })
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+            console.log(action);
+          },
+        );
+      next(action);
+      break;
+    }
+    case POST_STATUS: {
+      const token = localStorage.getItem('token');
+      const data = {
+        name: action.name,
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }
+      };
+      api
+        .post('/statuses', data, options)
         .then(
           (response) => {
             console.log(response)
@@ -236,18 +282,20 @@ export const dataMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
-    case POST_STATUS: {
+    case GET_CONTACT: {
       const token = localStorage.getItem('token');
+      const options = {
+        headers: {
+          'Authorization': token,
+        }
+      };
       api
-        .post('/statuses', {
-          headers: {
-            'Authorization': token
-          },
-          name: action.name,
-        })
+        .get('/contacts', options)
         .then(
           (response) => {
-            console.log(response)
+            const contactList = response.data;
+            const simplifiedContact = simplifyContact(contactList);
+            store.dispatch(setContact(simplifiedContact));
           },
         )
         .catch(
