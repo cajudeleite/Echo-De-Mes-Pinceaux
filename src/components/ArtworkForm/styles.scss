@@ -87,6 +87,8 @@
           }
           &__input {
             height: 5rem;
+            overflow: auto;
+            resize: vertical;
           }
         }
       }

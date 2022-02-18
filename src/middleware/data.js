@@ -8,6 +8,7 @@ import { GET_COLLECTIONS_FROM_API, setCollections, POST_COLLECTION } from '../ac
 import { GET_STATUSES_FROM_API, setStatus, POST_STATUS } from '../actions/status';
 import { POST_ARTWORK } from '../actions/artwork';
 import { POST_CONTACT, GET_CONTACT, setContact } from '../actions/contact';
+import { setAlert } from '../actions/alert';
 import { AUTHENTICATE } from '../actions/authenticate';
 
 export const dataMiddleware = (store) => (next) => (action) => {
@@ -111,12 +112,14 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .post('/artworks', data, options)
         .then(
           (response) => {
-            console.log(response)
+            console.log(response);
+            store.dispatch(setAlert('Votre réalisation artistique a été publiée avec succès', 'OK', '/artwork'));
           },
         )
         .catch(
           (error) => {
             console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre réalisation artistique', 'Réessayer', 'reload'));
           },
         );
       next(action);
@@ -167,11 +170,14 @@ export const dataMiddleware = (store) => (next) => (action) => {
           (response) => {
             localStorage.setItem('token', response.data.auth_token);
             localStorage.setItem('logged', true);
+            store.dispatch(setAlert('Vous avez été connecté avec succès', 'OK', '/'));
           },
         )
         .catch(
           (error) => {
             console.log(error);
+            console.log('passed');
+            store.dispatch(setAlert("Le nom d'utilisateur et/ou le mot de passe est incorrect", 'Réessayer', 'reload'));
           },
         );
       next(action);
@@ -192,12 +198,14 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .post('/years', data, options)
         .then(
           (response) => {
-            console.log(response)
+            console.log(response);
+            store.dispatch(setAlert('Votre année a été publiée avec succès', 'OK', 'reload'));
           },
         )
         .catch(
           (error) => {
             console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre année', 'OK', 'reload'));
           },
         );
       next(action);
@@ -218,12 +226,14 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .post('/techniques', data, options)
         .then(
           (response) => {
-            console.log(response)
+            console.log(response);
+            store.dispatch(setAlert('Votre technique a été publiée avec succès', 'OK', 'reload'));
           },
         )
         .catch(
           (error) => {
             console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre technique', 'OK', 'reload'));
           },
         );
       next(action);
@@ -244,13 +254,14 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .post('/collections', data, options)
         .then(
           (response) => {
-            console.log(response)
+            console.log(response);
+            store.dispatch(setAlert('Votre collection a été publiée avec succès', 'OK', 'reload'));
           },
         )
         .catch(
           (error) => {
             console.log(error);
-            console.log(action);
+            store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre collection', 'OK', 'reload'));
           },
         );
       next(action);
@@ -271,12 +282,14 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .post('/statuses', data, options)
         .then(
           (response) => {
-            console.log(response)
+            console.log(response);
+            store.dispatch(setAlert('Votre status a été publiée avec succès', 'OK', 'reload'));
           },
         )
         .catch(
           (error) => {
             console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre status', 'OK', 'reload'));
           },
         );
       next(action);

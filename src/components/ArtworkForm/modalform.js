@@ -2,12 +2,12 @@ import './styles.scss';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getYearsFromApi, postYear } from '../../actions/year';
-import { getTechniquesFromApi, postTechnique } from '../../actions/technique';
-import { getCollectionsFromApi, postCollection } from '../../actions/collection';
-import { getStatusesFromApi, postStatus } from '../../actions/status';
+import { postYear } from '../../actions/year';
+import { postTechnique } from '../../actions/technique';
+import { postCollection } from '../../actions/collection';
+import { postStatus } from '../../actions/status';
 
-const ModalForm = ({ label, modal, setModal }) => {
+const ModalForm = ({ label, setAlert }) => {
 
   const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ const ModalForm = ({ label, modal, setModal }) => {
         } else if (label === 'status') {
           dispatch(postStatus(inputValue));
         }
-        window.location.reload();
+        setAlert(true);
       }}>
         <label htmlFor={label} className='artwork_form__container__form__modal__form__label'>{labelChiant}</label>
         <input
@@ -55,8 +55,7 @@ const ModalForm = ({ label, modal, setModal }) => {
 
 ModalForm.propTypes = {
   label: PropTypes.string.isRequired,
-  modal: PropTypes.bool.isRequired,
-  setModal: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
 }
 
 export default ModalForm;
