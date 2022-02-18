@@ -92,6 +92,19 @@
           }
         }
       }
+      &__photo_preview {
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        img {
+          object-fit: cover;
+          border-radius: 5px;
+          border: 15px solid vars.$rock-spray;
+          border-style: double;
+          background-color: #DF9C34;
+          margin: 1rem;
+        }
+      }
       &__submit {
         color: vars.$rock-spray;
         background-color: vars.$sea-buckthorn;
@@ -150,6 +163,16 @@
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .artwork_form {
+    &__container {
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
     }
   }
 }
