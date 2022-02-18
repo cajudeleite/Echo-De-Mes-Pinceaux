@@ -15,7 +15,7 @@ const ArtworkPage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/artworks')
+      .get('https://v1-echo-de-mes-pinceaux.herokuapp.com/artworks')
       .then(
         (response) => {
           const artworkArray = response.data;

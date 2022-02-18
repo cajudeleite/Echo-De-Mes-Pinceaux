@@ -39,7 +39,7 @@ const ArtworkItem = () => {
 
   const idToName = (path, id) => {
     axios
-      .get(`http://localhost:3000/${path}/${id}`)
+      .get(`https://v1-echo-de-mes-pinceaux.herokuapp.com/${path}/${id}`)
       .then(
         (response) => {
           const objectName = response.data.name;
@@ -89,7 +89,7 @@ const ArtworkItem = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/artworks/${id}`)
+      .get(`https://v1-echo-de-mes-pinceaux.herokuapp.com/artworks/${id}`)
       .then(
         (response) => {
           const artwork = response.data;

@@ -19,6 +19,13 @@ const ArtworkForm = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getYearsFromApi());
+    dispatch(getTechniquesFromApi());
+    dispatch(getCollectionsFromApi());
+    dispatch(getStatusesFromApi());
+  }, []);
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [year, setYear] = useState('1');
@@ -58,10 +65,7 @@ const ArtworkForm = () => {
         </form>
       </div>}
       {modal && !alert && <ModalForm label={modalLabel} setAlert={setAlert} />}
-      {!modal && alert && !success && <PageAlert title='Il y a eu un problème lors de la publication de votre réalisation artistique' button='Réessayer' route='reload' />}
-      {!modal && alert && success && <PageAlert title='Votre réalisation artistique a été publiée avec succès' button='OK' route='/artwork' />}
-      {modal && alert && !success && <PageAlert title={`Il y a eu un problème lors de la publication de votre ${modalLabel}`} button='Réessayer' route='reload' />}
-      {modal && alert && success && <PageAlert title={`Votre ${modalLabel} a été publiée avec succès`} button='OK' route='reload' />}
+      {alert && <PageAlert />}
     </section>
   );
 };

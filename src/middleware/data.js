@@ -14,7 +14,7 @@ import { AUTHENTICATE } from '../actions/authenticate';
 export const dataMiddleware = (store) => (next) => (action) => {
 
   const api = axios.create({
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'https://v1-echo-de-mes-pinceaux.herokuapp.com/',
   });
 
   switch (action.type) {
