@@ -82,7 +82,7 @@
       }
     }
     &__photo {
-      width: 40%;
+      width: 50% !important;
       &__image {
         object-fit: cover;
         min-height: 250px;
@@ -105,7 +105,7 @@
     }
     &__text {
       padding-right: 3rem;
-      width: 60%;
+      width: 50% !important;
       &__title {
         font-family: vars.$title;
         font-size: 2rem;
@@ -127,6 +127,7 @@
       &__description {
         text-align: justify;
         text-justify: inter-word;
+        line-height: 2rem;
       }
     }
   }
