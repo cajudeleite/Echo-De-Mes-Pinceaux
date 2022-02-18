@@ -6,7 +6,7 @@ import { GET_YEARS_FROM_API, setYears, POST_YEAR } from '../actions/year';
 import { GET_TECHNIQUES_FROM_API, setTechniques, POST_TECHNIQUE } from '../actions/technique';
 import { GET_COLLECTIONS_FROM_API, setCollections, POST_COLLECTION } from '../actions/collection';
 import { GET_STATUSES_FROM_API, setStatus, POST_STATUS } from '../actions/status';
-import { POST_ARTWORK } from '../actions/artwork';
+import { POST_ARTWORK, UPDATE_ARTWORK, DELETE_ARTWORK } from '../actions/artwork';
 import { POST_CONTACT, GET_CONTACT, setContact } from '../actions/contact';
 import { setAlert } from '../actions/alert';
 import { AUTHENTICATE } from '../actions/authenticate';
@@ -120,6 +120,66 @@ export const dataMiddleware = (store) => (next) => (action) => {
           (error) => {
             console.log(error);
             store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre réalisation artistique', 'Réessayer', 'reload'));
+          },
+        );
+      next(action);
+      break;
+    }
+    case UPDATE_ARTWORK: {
+      const token = localStorage.getItem('token');
+      const data = {
+        title: action.title,
+        year_id: action.year,
+        technique_id: action.technique,
+        collection_id: action.collection,
+        status_id: action.status,
+        description: action.description,
+        photo_id: action.photo,
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }
+      };
+      console.log(action.id);
+      api
+        .patch(`/artworks/${action.id}`, data, options)
+        .then(
+          (response) => {
+            console.log(response);
+            store.dispatch(setAlert('Votre réalisation artistique a été modifiée avec succès', 'OK', '/artwork'));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la modification de votre réalisation artistique', 'Réessayer', 'reload'));
+          },
+        );
+      next(action);
+      break;
+    }
+    case DELETE_ARTWORK: {
+      const token = localStorage.getItem('token');
+      const options = {
+        headers: {
+          'Authorization': token,
+        }
+      };
+      console.log(action.id);
+      api
+        .delete(`/artworks/${action.id}`, options)
+        .then(
+          (response) => {
+            console.log(response);
+            store.dispatch(setAlert('Votre réalisation artistique a été supprimée avec succès', 'OK', '/artwork'));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la suppression de votre réalisation artistique', 'Réessayer', 'reload'));
           },
         );
       next(action);

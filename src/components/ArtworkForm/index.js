@@ -13,7 +13,7 @@ import { getYearsFromApi } from '../../actions/year';
 import { getTechniquesFromApi } from '../../actions/technique';
 import { getCollectionsFromApi } from '../../actions/collection';
 import { getStatusesFromApi } from '../../actions/status';
-import { postArtwork } from '../../actions/artwork';
+import { postArtwork, updateArtwork } from '../../actions/artwork';
 
 const ArtworkForm = () => {
 
@@ -36,11 +36,12 @@ const ArtworkForm = () => {
   const [modal, setModal] = useState(false);
   const [modalLabel, setModalLabel] = useState('');
   const [alert, setAlert] = useState(false);
-  const success = localStorage.getItem('success') === true;
   const yearsList = useSelector((state) => state.year.list);
   const techniquesList = useSelector((state) => state.technique.list);
   const collectionsList = useSelector((state) => state.collection.list);
   const statusesList = useSelector((state) => state.status.list);
+  const method = useSelector((state) => state.artwork.method);
+  const id = useSelector((state) => state.artwork.item_id);
 
   return (
     <section className="artwork_form">
@@ -49,7 +50,14 @@ const ArtworkForm = () => {
         <form className="artwork_form__container__form" action="" encType='multipart/form-data' method="post" onSubmit={(event) => {
           event.preventDefault();
           const photoToString = photo.toString()
-          dispatch(postArtwork(title, year, technique, collection, status, description, photoToString));
+          if (method === 'post') {
+            dispatch(postArtwork(title, year, technique, collection, status, description, photoToString));
+          } else if (method === 'patch') {
+            console.log(id);
+            dispatch(updateArtwork(id, title, year, technique, collection, status, description, photoToString));
+          } else {
+            console.log('no method')
+          }
           setAlert(true);
         }}>
           <ArtworkTextInput value={title} setValue={setTitle} label='Titre'/>

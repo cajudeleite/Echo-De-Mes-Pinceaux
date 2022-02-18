@@ -6,10 +6,13 @@ import ArtworkList from './artworklist';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setFormMethod } from '../../actions/artwork';
 
 const ArtworkPage = () => {
 
   const history = useHistory();
+  const dispatch = useDispatch();
   const logged = localStorage.getItem('logged') === 'true';
   const [artwork, setArtwork] = useState([]);
 
@@ -32,9 +35,11 @@ const ArtworkPage = () => {
 
   return (
     <section className='artwork'>
-      <h1>Hello your in gallery</h1>
       {logged && <div className="artwork__create">
-        <button className='artwork__create__button' onClick={() => history.push('/artwork/create')}>Nouvelle Publication <FontAwesomeIcon className="artwork__create__button__plus" icon={faPlus} /></button>
+        <button className='artwork__create__button' onClick={() => {
+          dispatch(setFormMethod('post'));
+          history.push('/artwork/create');
+        }}>Nouvelle Publication <FontAwesomeIcon className="artwork__create__button__plus" icon={faPlus} /></button>
       </div>}
       <div className="artwork__list">
         {artwork.map((artwork) => <ArtworkList id={artwork.id} title={artwork.title} photo_id={artwork.photo_id}/>,)}

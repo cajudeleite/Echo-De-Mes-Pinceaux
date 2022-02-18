@@ -6,11 +6,16 @@ import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setFormMethod, deleteArtwork } from '../../actions/artwork';
 import { faChevronLeft, faChevronRight, faArrowLeftLong, faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import PageAlert from '../PageAlert';
 
 const ArtworkItem = () => {
 
   const history = useHistory();
+  const dispatch = useDispatch();
+  const logged = localStorage.getItem('logged') === 'true';
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [photoArray, setPhotoArray] = useState([]);
@@ -19,6 +24,7 @@ const ArtworkItem = () => {
   const [techniqueName, setTechniqueName] = useState('');
   const [collectionName, setCollectionName] = useState('');
   const [statusName, setStatusName] = useState('');
+  const [alert, setAlert] = useState(false);
   const id = useSelector((state) => state.artwork.item_id);
   const image = document.querySelector('.artwork__item__photo__image');
 
@@ -128,21 +134,27 @@ const ArtworkItem = () => {
 
   return (
     <div className='artwork__item'>
-      <div className="artwork__item__top">
+      {!alert && <div className="artwork__item__top">
         <button className="artwork__item__top__back_button" onClick={() => history.push('/artwork')}><FontAwesomeIcon className="artwork__item__top__back_button__left_arrow" icon={faArrowLeftLong} /> Revenir en arrière</button>
-        <div className="artwork__item__top__last_buttons">
-          <button className="artwork__item__top__last_buttons__edit">Modifier <FontAwesomeIcon className="artwork__item__top__last_buttons__edit__pencil" icon={faPencil} /></button>
-          <button className="artwork__item__top__last_buttons__delete">Supprimer <FontAwesomeIcon className="artwork__item__top__last_buttons__delete__trash" icon={faTrashCan} /></button>
-        </div>
-      </div>
-      <div className="artwork__item__photo">
+        {logged && <div className="artwork__item__top__last_buttons">
+          <button className="artwork__item__top__last_buttons__edit" onClick={() => {
+            dispatch(setFormMethod('patch'));
+            history.push('/artwork/create');
+          }}>Modifier <FontAwesomeIcon className="artwork__item__top__last_buttons__edit__pencil" icon={faPencil} /></button>
+          <button className="artwork__item__top__last_buttons__delete" onClick={() => {
+            setAlert(true);
+            dispatch(deleteArtwork(id));
+          }}>Supprimer <FontAwesomeIcon className="artwork__item__top__last_buttons__delete__trash" icon={faTrashCan} /></button>
+        </div>}
+      </div>}
+      {!alert && <div className="artwork__item__photo">
         <AdvancedImage
           key={id}
           id='image'
           className="artwork__item__photo__image"
           cldImg={cld.image(photoArray[n])}
         />
-        {<div className="artwork__item__photo__arrow">
+        <div className="artwork__item__photo__arrow">
           <FontAwesomeIcon className="artwork__item__photo__arrow__left" icon={faChevronLeft} onClick={() => {
             changePhotoLess();
             checkImage();
@@ -151,15 +163,16 @@ const ArtworkItem = () => {
             changePhotoPlus();
             checkImage();
           }} />
-        </div>}
-      </div>
-      <div className="artwork__item__text">
+        </div>
+      </div>}
+      {!alert && <div className="artwork__item__text">
         <h1 className='artwork__item__text__title'>{textTreatment(title)}</h1>
         <p className='artwork__item__text__dateandtechnique'>{yearName} / {textTreatment(techniqueName)}</p>
         <p className='artwork__item__text__collection'>{textTreatment(collectionName)}</p>
         <p className='artwork__item__text__status'>{textTreatment(statusName)}</p>
         <p className='artwork__item__text__description'>{textTreatment(description)}</p>
-      </div>
+      </div>}
+      {alert && <PageAlert />}
     </div>
   );
 };

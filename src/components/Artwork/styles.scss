@@ -88,7 +88,7 @@
         min-height: 250px;
         width: 100%;
         border-radius: 5px;
-        border: 15px solid vars.$pesto;
+        border: 15px solid vars.$rock-spray;
         border-style: double;
         background-color: #DF9C34;
       }
@@ -131,27 +131,3 @@
     }
   }
 }
-
-/*@media screen and (max-width: 1250px) {
-  .artwork {
-    &__item {
-      &__photo {
-        padding: 0 2rem;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .artwork {
-    &__item {
-      flex-direction: column;
-      &__photo {
-        width: 100%;
-      }
-      &__text {
-        width: 100%;
-      }
-    }
-  }
-}*/
