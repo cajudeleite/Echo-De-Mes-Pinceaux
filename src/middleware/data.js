@@ -203,12 +203,14 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .post('/contacts', data, options)
         .then(
           (response) => {
-            console.log(response)
+            console.log(response);
+            store.dispatch(setAlert('Votre message de contact a été publiée avec succès', 'OK', '/'));
           },
         )
         .catch(
           (error) => {
             console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre message de contact', 'OK', 'reload'));
           },
         );
       next(action);
@@ -230,13 +232,12 @@ export const dataMiddleware = (store) => (next) => (action) => {
           (response) => {
             localStorage.setItem('token', response.data.auth_token);
             localStorage.setItem('logged', true);
-            store.dispatch(setAlert('Vous avez été connecté avec succès', 'OK', '/'));
+            store.dispatch(setAlert('Vous avez été connecté avec succès', 'OK', '/ reload'));
           },
         )
         .catch(
           (error) => {
             console.log(error);
-            console.log('passed');
             store.dispatch(setAlert("Le nom d'utilisateur et/ou le mot de passe est incorrect", 'Réessayer', 'reload'));
           },
         );

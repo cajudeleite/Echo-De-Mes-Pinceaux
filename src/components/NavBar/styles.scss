@@ -20,6 +20,9 @@
     font-size: 20px;
     display: flex;
     justify-content: space-around;
+    &__link {
+      cursor: pointer;
+    }
   }
   &__burger {
     display: none;
@@ -29,6 +32,15 @@
 .filter {
   display: none;
 }
+
+@media screen and(max-width: 1000px) {
+  .navbar {
+    &__logo {
+      font-size: 35px;
+    }
+  }
+}
+
 
 @media screen and(max-width: 767px) {
   .navbar {

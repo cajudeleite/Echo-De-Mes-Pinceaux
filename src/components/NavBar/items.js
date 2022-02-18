@@ -10,7 +10,10 @@ const NavItems = () => {
     <Link name='Galerie' link='/artwork' />
     <Link name='Contact' link='/contact' />
     {!logged && <Link name='Connexion' link='/connection' />}
-    {logged && <Link name='Déconnexion' link='deconnect' />}
+    {logged && <h1 className="navbar__items__link" onClick={() => {
+      localStorage.removeItem('logged');
+      window.location.reload();
+    }}>Déconnexion</h1>}
   </>
 );
 };
