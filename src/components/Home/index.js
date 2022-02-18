@@ -5,7 +5,7 @@ import armoire from 'src/assets/photos/Armoire-Pharmacie.jpg';
 import horloge from 'src/assets/photos/DSC_7388 copie.JPG';
 import bateau from 'src/assets/photos/Coffre-bateau.JPG';
 import chantalExpo from 'src/assets/photos/20191201_EXPO.jpg';
-import bidon from 'src/assets/photos/2018-Bidon de lait-Bernadette copie.JPG';
+import chantal from 'src/assets/photos/A-Chantal.JPG';
 
 const Home = () => {
 
@@ -14,9 +14,9 @@ const Home = () => {
       <div className="home__text__first">
         <p className='home__text__first__strong'>Bienvenue á « L'ècho de mes pinceaux », sur mon site qui voudrait être avant tout un partage de mes passions !</p>
         <div className="home__simpleimage__first">
-          <img src={pinceaux} alt="Coffre bateau" />
+          <img src={pinceaux} alt="Mes pinceaux" />
         </div>
-        <p>Vous aurez remarquè que mon site n'est pas d'abord un site de vente. Certes, il n'en n'exclut pas la question, mais mon ambition est avant tout de faire connaître et d'exposer le travail de mes pinceaux.</p>
+        <p>Mon site n'est pas d'abord un site de vente. Certes, il n'en n'exclut pas la question, mais mon ambition est avant tout de faire connaître et d'exposer le travail de mes pinceaux.</p>
         <p>« L'ècho de mes pinceaux » est aussi un hommage á vous tous, á tous mes amis, á toutes les rencontres
         proches et lointaines que j'ai pu faire et jusqu'au bout du monde, tous ceux qui m'ont inspirèe et aidèe du fil du temps, á puiser moi-même aux sources de l'èlan crèateur.</p>
         <p>C'est un rèel plaisir de partager avec vous les joies crèatrices d'un univers oú la peinture et le dessin ont ètè mes compagnons depuis toujours. Aprés avoir consacrè une bonne partie de ma vie professionnelle á l'enseignement universitaire et contemplè les œuvres d'art, j'ai eu envie de mettre mes pinceaux á l'œuvre.</p>
@@ -30,7 +30,7 @@ const Home = () => {
       </div>
       <div className="home__image-text__first">
         <div className="home__image-text__first__photo">
-          <img src={bidon} alt="Mes pinceaux" />
+          <img src={chantal} alt="Mes pinceaux" />
         </div>
         <div className="home__image-text__first__text">
           <div className="home__image-text__first__text__container">
