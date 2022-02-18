@@ -7,8 +7,20 @@
   justify-content: center;
   align-items: center;
   &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100%;
     width: 80%;
+    &__title {
+      width: 100%;
+      font-family: vars.$title;
+      background-color: vars.$pampas;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      padding: 2rem;
+    }
     &__item {
       margin: 2rem 0;
       display: flex;
