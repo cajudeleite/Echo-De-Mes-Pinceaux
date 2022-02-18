@@ -1,0 +1,30 @@
+@use '/src/styles/vars';
+
+.page_alert {
+  border-radius: 5px;
+  width: 50%;
+  height: fit-content;
+  background-color: vars.$pampas;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &__title {
+    font-family: vars.$title;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  &__submit {
+    color: vars.$rock-spray;
+    background-color: vars.$sea-buckthorn;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: vars.$title;
+    height: 2rem;
+    padding: 0 1rem;
+    margin: 1rem 30%;
+    cursor: pointer;
+  }
+}
