@@ -6,8 +6,19 @@ import horloge from 'src/assets/photos/DSC_7388 copie.JPG';
 import bateau from 'src/assets/photos/Coffre-bateau.JPG';
 import chantalExpo from 'src/assets/photos/20191201_EXPO.jpg';
 import chantal from 'src/assets/photos/A-Chantal.JPG';
+import { useCookies } from 'react-cookie';
+import { useLayoutEffect } from 'react';
 
 const Home = () => {
+
+  const [cookies, setCookie, removeCookie] = useCookies(['reload']);
+
+  useLayoutEffect(() => {
+    if (cookies.reload) {
+      removeCookie('reload');
+      window.location.reload();
+    }
+  });
 
   return (
     <section className="home">

@@ -35,4 +35,5 @@ ArtworkList.propTypes = {
   id: PropTypes.number.isRequired,
   photo_id: PropTypes.string.isRequired,
 };
+
 export default ArtworkList;

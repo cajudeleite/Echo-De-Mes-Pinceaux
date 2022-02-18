@@ -1,9 +1,20 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
+import { useCookies } from 'react-cookie';
 
 const ItemText = ({ value, setValue, label }) => {
 
   const labelLowerCase = label.toLowerCase();
+  const cookieName = `contact${label}`;
+  const [cookies, setCookie] = useCookies([cookieName]);
+  const cookieValue = () => {
+    if (cookies[cookieName]) {
+      return cookies[cookieName];
+    } else {
+      return value;
+    };
+  };
+
 
   return (
     <div className="contact__container__form__item__text">
@@ -13,9 +24,14 @@ const ItemText = ({ value, setValue, label }) => {
         id={labelLowerCase}
         className='contact__container__form__item__text__input'
         placeholder=''
-        value={value}
+        value={cookieValue()}
         onChange={(event) => {
           setValue(event.target.value);
+          if (cookies.allowCookies) {
+            setCookie(cookieName, event.target.value, {
+              path: "/"
+            });
+          };
         }}
       />
     </div>

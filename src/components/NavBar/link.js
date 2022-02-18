@@ -5,18 +5,9 @@ import { useState } from 'react';
 
 const Link = ({name, link}) => {
 
-  const [lien, setLien] = useState(link);
-
-  const method = () => {
-    if (link === 'deconnect') {
-      localStorage.removeItem('logged');
-      setLien('/');
-    }
-  };
-
   return (
     <div className="navbar__items__link">
-      <NavLink to={lien} exact onClick={() => method()}>{name}</NavLink>
+      <NavLink to={link} exact>{name}</NavLink>
     </div>
   );
 };
