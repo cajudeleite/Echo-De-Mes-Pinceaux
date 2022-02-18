@@ -166,7 +166,7 @@ const ArtworkItem = () => {
         </div>
       </div>}
       {!alert && <div className="artwork__item__text">
-        <h1 className='artwork__item__text__title'>{textTreatment(title)}</h1>
+        <h1 className='artwork__item__text__title'>{title}</h1>
         <p className='artwork__item__text__dateandtechnique'>{yearName} / {textTreatment(techniqueName)}</p>
         <p className='artwork__item__text__collection'>{textTreatment(collectionName)}</p>
         <p className='artwork__item__text__status'>{textTreatment(statusName)}</p>
