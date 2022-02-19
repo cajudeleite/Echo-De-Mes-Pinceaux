@@ -8,6 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setFormMethod } from '../../actions/artwork';
+import { useCookies } from 'react-cookie';
 
 const ArtworkPage = () => {
 
@@ -15,6 +16,7 @@ const ArtworkPage = () => {
   const dispatch = useDispatch();
   const logged = localStorage.getItem('logged') === 'true';
   const [artwork, setArtwork] = useState([]);
+  const [cookies, setCookie] = useCookies(['artworkMethod']);
 
   useEffect(() => {
     axios
@@ -38,6 +40,11 @@ const ArtworkPage = () => {
       {logged && <div className="artwork__create">
         <button className='artwork__create__button' onClick={() => {
           dispatch(setFormMethod('post'));
+          if (cookies.allowCookies) {
+            setCookie('artworkMethod', 'post', {
+              path: "/"
+            });
+          };
           history.push('/artwork/create');
         }}>Nouvelle Publication <FontAwesomeIcon className="artwork__create__button__plus" icon={faPlus} /></button>
       </div>}

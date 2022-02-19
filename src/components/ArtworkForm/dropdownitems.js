@@ -5,7 +5,7 @@ const ArtworkDropdownItem = ({ list }) => {
 
   return (
     list.map((item) => (
-      <option value={item.id}>{item.name}</option>
+      <option key={item.name} value={item.id}>{item.name}</option>
     ),)
   );
 };

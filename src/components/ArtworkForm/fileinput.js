@@ -1,11 +1,14 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
+import { useCookies } from 'react-cookie';
 
 const ArtworkFileInput = ({ setValue, label }) => {
 
   const photoArray = [];
 
   const labelLowerCase = label.toLowerCase();
+  const cookieName = `artwork${label}`;
+  const [cookies, setCookie] = useCookies([cookieName]);
 
   const myWidget = window.cloudinary.createUploadWidget(
     {
@@ -16,6 +19,11 @@ const ArtworkFileInput = ({ setValue, label }) => {
       if (!error && result && result.event === "success") {
         photoArray.push(result.info.public_id);
         setValue(photoArray);
+        if (cookies.allowCookies) {
+          setCookie(cookieName, photoArray, {
+            path: "/"
+          });
+        };
       }
     }
   );

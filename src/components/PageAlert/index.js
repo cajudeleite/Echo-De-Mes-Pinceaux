@@ -8,7 +8,7 @@ const PageAlert = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const [cookies, setCookie] = useCookies(['reload']);
+  const [cookies, setCookie, removeCookie] = useCookies(['reload']);
   const title = useSelector((state) => state.alert.title);
   const button = useSelector((state) => state.alert.button);
   const route = useSelector((state) => state.alert.route);
@@ -23,6 +23,26 @@ const PageAlert = () => {
       history.push('/');
     } else {
       history.push(route);
+    }
+    if (title === 'Votre réalisation artistique a été publiée avec succès') {
+      removeCookie('artworkTitre');
+      removeCookie('artworkAnnée');
+      removeCookie('artworkTechniques');
+      removeCookie('artworkCollections');
+      removeCookie('artworkStatus');
+      removeCookie('artworkPhoto');
+      removeCookie('artworkDescrition');
+      removeCookie('artworkMethod');
+    } else if (title === 'Votre réalisation artistique a été modifiée avec succès') {
+      removeCookie('artworkTitre');
+      removeCookie('artworkAnnée');
+      removeCookie('artworkTechniques');
+      removeCookie('artworkCollections');
+      removeCookie('artworkStatus');
+      removeCookie('artworkPhoto');
+      removeCookie('artworkDescrition');
+      removeCookie('artworkId');
+      removeCookie('artworkMethod');
     }
     dispatch(setAlert('Error', 'OK', '/'));
   }

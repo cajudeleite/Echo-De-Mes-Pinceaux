@@ -10,9 +10,8 @@ const ItemTextarea = ({ value, setValue, label }) => {
   const cookieValue = () => {
     if (cookies[cookieName]) {
       return cookies[cookieName];
-    } else {
-      return value;
     };
+    return value;
   };
 
   return (
@@ -25,9 +24,11 @@ const ItemTextarea = ({ value, setValue, label }) => {
         value={cookieValue()}
         onChange={(event) => {
           setValue(event.target.value);
-          setCookie(cookieName, event.target.value, {
-            path: "/"
-          });
+          if (cookies.allowCookies) {
+            setCookie(cookieName, event.target.value, {
+              path: "/"
+            });
+          };
         }}
       />
     </div>

@@ -10,9 +10,8 @@ const ItemText = ({ value, setValue, label }) => {
   const cookieValue = () => {
     if (cookies[cookieName]) {
       return cookies[cookieName];
-    } else {
-      return value;
     };
+    return value;
   };
 
 

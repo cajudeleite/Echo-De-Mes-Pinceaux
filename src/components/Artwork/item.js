@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { setFormMethod, deleteArtwork } from '../../actions/artwork';
 import { faChevronLeft, faChevronRight, faArrowLeftLong, faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import PageAlert from '../PageAlert';
+import { useCookies } from 'react-cookie';
 
 const ArtworkItem = () => {
 
@@ -25,8 +26,15 @@ const ArtworkItem = () => {
   const [collectionName, setCollectionName] = useState('');
   const [statusName, setStatusName] = useState('');
   const [alert, setAlert] = useState(false);
+  const [cookies, setCookie] = useCookies(['artworkMethod']);
   const id = useSelector((state) => state.artwork.item_id);
   const image = document.querySelector('.artwork__item__photo__image');
+  const cookiedId = () => {
+    if (cookies.artworkId) {
+      return cookies.artworkId;
+    };
+    return id;
+  };
 
   const textTreatment = (text) => {
     const à = /à/gi;
@@ -95,7 +103,7 @@ const ArtworkItem = () => {
 
   useEffect(() => {
     axios
-      .get(`https://v1-echo-de-mes-pinceaux.herokuapp.com/artworks/${id}`)
+      .get(`https://v1-echo-de-mes-pinceaux.herokuapp.com/artworks/${cookiedId()}`)
       .then(
         (response) => {
           const artwork = response.data;
@@ -113,17 +121,15 @@ const ArtworkItem = () => {
           console.log(error);
         },
       );
-
-    }, []);
+      console.log(cookiedId());
+  }, []);
 
     const checkImage = () => {
       if (image && (image.offsetWidth >= image.offsetHeight)) {
-        console.log('box');
         document.querySelector('.artwork__item__photo').style.padding = "0 2rem";
         document.querySelector('.artwork__item__photo').style.width = "40%";
         document.querySelector('.artwork__item__text').style.width = "60%";
       } else if (image && (image.offsetWidth < image.offsetHeight)) {
-        console.log('big');
         document.querySelector('.artwork__item__photo').style.padding = "0 3rem";
         document.querySelector('.artwork__item__photo').style.width = "35%";
         document.querySelector('.artwork__item__text').style.width = "65%";
@@ -139,22 +145,27 @@ const ArtworkItem = () => {
         {logged && <div className="artwork__item__top__last_buttons">
           <button className="artwork__item__top__last_buttons__edit" onClick={() => {
             dispatch(setFormMethod('patch'));
+            if (cookies.allowCookies) {
+              setCookie('artworkMethod', 'patch', {
+                path: "/"
+              });
+            };
             history.push('/artwork/create');
           }}>Modifier <FontAwesomeIcon className="artwork__item__top__last_buttons__edit__pencil" icon={faPencil} /></button>
           <button className="artwork__item__top__last_buttons__delete" onClick={() => {
             setAlert(true);
-            dispatch(deleteArtwork(id));
+            dispatch(deleteArtwork(cookiedId()));
           }}>Supprimer <FontAwesomeIcon className="artwork__item__top__last_buttons__delete__trash" icon={faTrashCan} /></button>
         </div>}
       </div>}
       {!alert && <div className="artwork__item__photo">
         <AdvancedImage
-          key={id}
+          key={cookiedId()}
           id='image'
           className="artwork__item__photo__image"
           cldImg={cld.image(photoArray[n])}
         />
-        <div className="artwork__item__photo__arrow">
+        {photoArray.length > 1 && <div className="artwork__item__photo__arrow">
           <FontAwesomeIcon className="artwork__item__photo__arrow__left" icon={faChevronLeft} onClick={() => {
             changePhotoLess();
             checkImage();
@@ -163,7 +174,7 @@ const ArtworkItem = () => {
             changePhotoPlus();
             checkImage();
           }} />
-        </div>
+        </div>}
       </div>}
       {!alert && <div className="artwork__item__text">
         <h1 className='artwork__item__text__title'>{title}</h1>
