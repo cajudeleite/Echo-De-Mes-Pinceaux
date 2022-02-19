@@ -10,20 +10,24 @@ const Burger = () => {
 
   const sidebarClassName = isHidden ? 'navbar__burger__sidebar__hidden' : 'navbar__burger__sidebar'
 
-  const toggleSidebar = () => {
+  const handleClick = () => {
     setIsHidden(!isHidden);
+  };
+
+  const burgerClick = () => {
+    const burger = document.querySelector('.navbar__burger__button__burger');
+    burger.click();
   };
 
   return (
     <div className="navbar__burger">
-      <button className='navbar__burger__button' onClick={toggleSidebar}><UseAnimations animation={menu3} size={50} strokeColor='#DCA62C' speed={1.3} /></button>
+      <button className='navbar__burger__button' onClick={() => handleClick()}><UseAnimations className='navbar__burger__button__burger' animation={menu3} size={50} strokeColor='#DCA62C' speed={1.3} /></button>
       <div className={sidebarClassName}>
-        <NavItems />
+        <NavItems simulateClick={burgerClick} />
       </div>
-      {!isHidden && <div className="filter"></div>}
+      {!isHidden && <div className="filter" onClick={() => burgerClick()}></div>}
     </div>
   );
 };
 
-// == Export
 export default Burger;

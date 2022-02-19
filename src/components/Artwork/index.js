@@ -38,7 +38,7 @@ const ArtworkPage = () => {
   return (
     <section className='artwork'>
       {logged && <div className="artwork__create">
-        <button className='artwork__create__button' onClick={() => {
+        <button key='new_artwork' className='artwork__create__button' onClick={() => {
           dispatch(setFormMethod('post'));
           if (cookies.allowCookies) {
             setCookie('artworkMethod', 'post', {
