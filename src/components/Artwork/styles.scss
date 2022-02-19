@@ -34,7 +34,10 @@
       border: 15px solid vars.$rock-spray;
       border-style: double;
       background-color: vars.$sea-buckthorn;
-      height: 300px;
+      max-height: 300px;
+      max-width: 95%;
+      width: auto;
+      height: auto;
     }
   }
   &__item {
@@ -131,5 +134,11 @@
         line-height: 2rem;
       }
     }
+  }
+}
+
+@media screen and(max-width: 767px) {
+  .artwork {
+    width: 100%;
   }
 }

@@ -4,6 +4,8 @@
   height: 5rem;
   width: 100%;
   display: flex;
+  position: fixed;
+  top: 0;
   background-color: vars.$rock-spray;
   color: vars.$pampas;
   align-items: center;

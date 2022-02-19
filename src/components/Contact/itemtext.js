@@ -41,6 +41,6 @@ ItemText.propTypes = {
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-}
+};
 
 export default ItemText;
