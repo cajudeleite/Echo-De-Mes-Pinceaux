@@ -19,6 +19,7 @@ const ArtworkItem = () => {
   const logged = localStorage.getItem('logged') === 'true';
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const descriptionArray = description.split('\n');
   const [photoArray, setPhotoArray] = useState([]);
   const [n, setN] = useState(0);
   const [yearName, setYearName] = useState('');
@@ -149,6 +150,9 @@ const ArtworkItem = () => {
               setCookie('artworkMethod', 'patch', {
                 path: "/"
               });
+              setCookie('inputFocus', 'true', {
+                path: "/"
+              });
             };
             history.push('/artwork/create');
           }}>Modifier <FontAwesomeIcon className="artwork__item__top__last_buttons__edit__pencil" icon={faPencil} /></button>
@@ -181,7 +185,7 @@ const ArtworkItem = () => {
         <p className='artwork__item__text__dateandtechnique'>{yearName} / {textTreatment(techniqueName)}</p>
         <p className='artwork__item__text__collection'>{textTreatment(collectionName)}</p>
         <p className='artwork__item__text__status'>{textTreatment(statusName)}</p>
-        <p className='artwork__item__text__description'>{textTreatment(description)}</p>
+        {descriptionArray.map((item) => <p className='artwork__item__text__description'>{textTreatment(item)}</p>,<br></br>)}
       </div>}
       {alert && <PageAlert />}
     </div>

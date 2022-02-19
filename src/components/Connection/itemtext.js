@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 const ItemText = ({ value, setValue, label, type }) => {
 
-  const labelLowerCase = label.toLowerCase();
+  const labelLowerCase = label.toLowerCase().replace(' ', '').replace("'", '');
+
 
   return (
     <div className="connection__container__form__item__text">

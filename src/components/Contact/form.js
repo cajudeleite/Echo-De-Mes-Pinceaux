@@ -1,7 +1,7 @@
 import './styles.scss';
 import ItemText from './itemtext';
 import ItemTextarea from './itemtextarea';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postContact } from '../../actions/contact';
 import PropTypes from 'prop-types';
@@ -23,6 +23,13 @@ const ContactForm = ({setAlert}) => {
       removeCookie(cookieName);
     })
   };
+
+  useEffect(() => {
+    if (cookies.inputFocus) {
+      document.querySelector('#nom').focus();
+      removeCookie('inputFocus');
+    };
+  },[]);
 
   return (
     <form className="contact__container__form" encType='multipart/form-data' method="post" onSubmit={(event) => {
