@@ -33,7 +33,7 @@ const ArtworkForm = () => {
   const techniquesList = useSelector((state) => state.technique.list);
   const collectionsList = useSelector((state) => state.collection.list);
   const statusesList = useSelector((state) => state.status.list);
-  const [cookies, setCookie] = useCookies(['artworkMethod']);
+  const [cookies, setCookie, removeCookie] = useCookies(['artworkMethod']);
   const method = () => {
     if (cookies.allowCookies) {
       return cookies.artworkMethod
@@ -41,6 +41,13 @@ const ArtworkForm = () => {
     return useSelector((state) => state.artwork.method);
   };
   const [id, setId] = useState(useSelector((state) => state.artwork.item_id));
+  const formTitle = () => {
+    if (method() === 'patch') {
+      return 'Modifier réalisation artistique';
+    } else if (method() === 'post') {
+      return 'Publier nouvelle réalisation artistique';
+    };
+  };
 
   useEffect(() => {
     dispatch(getYearsFromApi());
@@ -92,13 +99,17 @@ const ArtworkForm = () => {
             console.log(error);
           },
         );
-    }
+    };
+    if (cookies.inputFocus) {
+      document.querySelector('#titre').focus();
+      removeCookie('inputFocus');
+    };
   }, []);
 
   return (
     <section className="artwork_form">
       {!modal && !alert && <div className="artwork_form__container">
-        <h1 className="artwork_form__container__title">Publier nouvelle réalisation artistique</h1>
+        <h1 className="artwork_form__container__title">{formTitle()}</h1>
         <form className="artwork_form__container__form" action="" encType='multipart/form-data' method="post" onSubmit={(event) => {
           event.preventDefault();
           const photoToString = photo.toString()

@@ -1,25 +1,29 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postYear } from '../../actions/year';
 import { postTechnique } from '../../actions/technique';
 import { postCollection } from '../../actions/collection';
 import { postStatus } from '../../actions/status';
+import { useCookies } from 'react-cookie';
 
 const ModalForm = ({ label, setAlert }) => {
 
   const dispatch = useDispatch();
-
   const [inputValue, setInputValue] = useState('');
-
   const labelCapitalize = label.charAt(0).toUpperCase() + label.slice(1);
-
   const nouveauFeminin = (label === 'status') ? 'nouveau' : 'nouvelle';
-
   const title = `Ajouter ${nouveauFeminin} ${label}`;
-
   const labelChiant = (labelCapitalize === 'Année') ? 'Annèe' : labelCapitalize;
+  const [cookies, setCookie, removeCookie] = useCookies(['inputFocus']);
+
+  useEffect(() => {
+    if (cookies.inputFocus) {
+      removeCookie('inputFocus');
+      document.querySelector(`#${label}`).focus();
+    };
+  }, []);
 
   return (
     <div className="artwork_form__container__form__modal">

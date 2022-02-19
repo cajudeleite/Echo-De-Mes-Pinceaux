@@ -36,6 +36,9 @@ const ArtworkDropdownInput = ({ value, setValue, label, list, modalValue, setMod
       value={cookieValue()}
       onChange={(event) => {
         if (event.target.value === 'modal') {
+          setCookie('cookieName', event.target.value, {
+            path: "/"
+          });
           setModalLabel(labelSingulier());
           setModalValue(!modalValue);
         } else {
@@ -55,7 +58,10 @@ const ArtworkDropdownInput = ({ value, setValue, label, list, modalValue, setMod
 };
 
 ArtworkDropdownInput.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
   setValue: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   list: PropTypes.arrayOf(PropTypes.shape({

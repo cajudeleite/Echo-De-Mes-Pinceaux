@@ -44,6 +44,9 @@ const ArtworkPage = () => {
             setCookie('artworkMethod', 'post', {
               path: "/"
             });
+            setCookie('inputFocus', 'true', {
+              path: "/"
+            });
           };
           history.push('/artwork/create');
         }}>Nouvelle Publication <FontAwesomeIcon className="artwork__create__button__plus" icon={faPlus} /></button>

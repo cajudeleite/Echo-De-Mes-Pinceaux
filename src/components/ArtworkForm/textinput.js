@@ -19,7 +19,7 @@ const ArtworkTextInput = ({ value, setValue, label }) => {
       <label htmlFor={labelLowerCase} className='artwork_form__container__form__input__text__label'>{label}</label>
       <input
         type="text"
-        key={labelLowerCase}
+        id={labelLowerCase}
         className='artwork_form__container__form__input__text__input'
         placeholder=''
         value={cookieValue()}

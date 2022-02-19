@@ -1,12 +1,20 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Link = ({name, link, simulateClick}) => {
+
+  const [cookies, setCookie] = useCookies(['inputFocus']);
 
   const method = () => {
     if (simulateClick) {
       simulateClick();
+    };
+    if ((name === 'Contact' || name === 'Connexion') && cookies.allowCookies) {
+      setCookie('inputFocus', 'true', {
+        path: "/"
+      });
     };
   };
 
