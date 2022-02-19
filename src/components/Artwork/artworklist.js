@@ -5,13 +5,14 @@ import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { setItemId } from '../../actions/artwork';
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const ArtworkList = ({id, title, photo_id}) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
   const photoArray = photo_id.split(',');
-
+  const [cookies, setCookie] = useCookies(['artworkId']);
 
   const cld = new Cloudinary({
     cloud: {
@@ -26,6 +27,11 @@ const ArtworkList = ({id, title, photo_id}) => {
     cldImg={cld.image(photoArray[0])}
     onClick={() => {
       dispatch(setItemId(id));
+      if (cookies.allowCookies) {
+        setCookie('artworkId', id, {
+          path: "/"
+        });
+      };
       history.push("/artwork/item");
     }} />
   )

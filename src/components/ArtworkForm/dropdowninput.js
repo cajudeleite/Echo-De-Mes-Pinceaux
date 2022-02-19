@@ -1,5 +1,6 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
+import { useCookies } from 'react-cookie';
 import ArtworkDropdownItem from './dropdownitems';
 
 const ArtworkDropdownInput = ({ value, setValue, label, list, modalValue, setModalValue, setModalLabel }) => {
@@ -16,25 +17,38 @@ const ArtworkDropdownInput = ({ value, setValue, label, list, modalValue, setMod
   const nouveauFeminin = (labelLowerCase === 'status') ? 'nouveau' : 'nouvelle';
   const addNew = `Ajouter ${nouveauFeminin} ${labelSingulier()}`;
   const labelChiant = (label === 'Année') ? 'Annèe' : label;
+  const cookieName = `artwork${label}`;
+  const [cookies, setCookie] = useCookies([cookieName]);
+  const cookieValue = () => {
+    if (cookies[cookieName]) {
+      return cookies[cookieName];
+    };
+    return value;
+  };
 
   return (
     <div className="artwork_form__container__form__input__dropdown">
       <label htmlFor={labelLowerCase} className='artwork_form__container__form__input__dropdown__label'>{labelChiant}</label>
       <select
       name="select"
-      id={labelLowerCase}
+      key={labelLowerCase}
       className='artwork_form__container__form__input__dropdown__select'
-      value={value}
+      value={cookieValue()}
       onChange={(event) => {
         if (event.target.value === 'modal') {
           setModalLabel(labelSingulier());
           setModalValue(!modalValue);
         } else {
           setValue(event.target.value);
+          if (cookies.allowCookies) {
+            setCookie(cookieName, event.target.value, {
+              path: "/"
+            });
+          };
         }
       }}>
         <ArtworkDropdownItem list={list}/>
-        <option value='modal'>{addNew}</option>
+        <option key='modal' value='modal'>{addNew}</option>
       </select>
     </div>
   );
