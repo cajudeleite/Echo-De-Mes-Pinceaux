@@ -28,6 +28,7 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     &__photo {
+      cursor: pointer;
       margin: 2rem;
       border-radius: 5px;
       border: 15px solid vars.$rock-spray;
