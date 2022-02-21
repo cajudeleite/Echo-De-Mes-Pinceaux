@@ -116,10 +116,7 @@ const ArtworkForm = () => {
           if (method() === 'post') {
             dispatch(postArtwork(title, year, technique, collection, status, description, photoToString));
           } else if (method() === 'patch') {
-            console.log(id);
             dispatch(updateArtwork(id, title, year, technique, collection, status, description, photoToString));
-          } else {
-            console.log('no method')
           };
           setAlert(true);
         }}>

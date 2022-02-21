@@ -142,7 +142,6 @@ export const dataMiddleware = (store) => (next) => (action) => {
           'Authorization': token,
         }
       };
-      console.log(action.id);
       api
         .patch(`/artworks/${action.id}`, data, options)
         .then(
@@ -167,7 +166,6 @@ export const dataMiddleware = (store) => (next) => (action) => {
           'Authorization': token,
         }
       };
-      console.log(action.id);
       api
         .delete(`/artworks/${action.id}`, options)
         .then(
