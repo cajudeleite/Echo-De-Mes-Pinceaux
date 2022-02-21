@@ -15,6 +15,6 @@ ArtworkDropdownItem.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
   }))
-}
+};
 
 export default ArtworkDropdownItem;

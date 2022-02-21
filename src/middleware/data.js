@@ -7,7 +7,7 @@ import { GET_TECHNIQUES_FROM_API, setTechniques, POST_TECHNIQUE } from '../actio
 import { GET_COLLECTIONS_FROM_API, setCollections, POST_COLLECTION } from '../actions/collection';
 import { GET_STATUSES_FROM_API, setStatus, POST_STATUS } from '../actions/status';
 import { POST_ARTWORK, UPDATE_ARTWORK, DELETE_ARTWORK } from '../actions/artwork';
-import { POST_CONTACT, GET_CONTACT, setContact } from '../actions/contact';
+import { POST_CONTACT, GET_CONTACT, setContact, DELETE_CONTACT } from '../actions/contact';
 import { setAlert } from '../actions/alert';
 import { AUTHENTICATE } from '../actions/authenticate';
 
@@ -209,6 +209,30 @@ export const dataMiddleware = (store) => (next) => (action) => {
           (error) => {
             console.log(error);
             store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre message de contact', 'OK', 'reload'));
+          },
+        );
+      next(action);
+      break;
+    }
+    case DELETE_CONTACT: {
+      const token = localStorage.getItem('token');
+      const options = {
+        headers: {
+          'Authorization': token,
+        }
+      };
+      api
+        .delete(`/contacts/${action.id}`, options)
+        .then(
+          (response) => {
+            console.log(response);
+            store.dispatch(setAlert('Le message de contact a été supprimée avec succès', 'OK', 'reload'));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la suppression du message de contact', 'Réessayer', 'reload'));
           },
         );
       next(action);
