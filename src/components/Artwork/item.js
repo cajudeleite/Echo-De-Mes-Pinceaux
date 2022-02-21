@@ -122,7 +122,6 @@ const ArtworkItem = () => {
           console.log(error);
         },
       );
-      console.log(cookiedId());
   }, []);
 
     const checkImage = () => {
