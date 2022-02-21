@@ -11,6 +11,9 @@ module.exports = merge(common, {
   plugins: [
     // Recharge uniquement ce qu'il y a besoin
     new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      favicon: "src/assets/favicon.ico"
+    }),
   ],
   module: {
     rules: [

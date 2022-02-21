@@ -33,7 +33,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
-        { 
+        {
           from: paths.static,
           to: '',
         }
@@ -41,7 +41,7 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      favicon: paths.assets + '/favicon.ico',
+      favicon: paths.assets + 'src/assets/favicon.ico',
       template: paths.assets + '/index.html',
     }),
   ],

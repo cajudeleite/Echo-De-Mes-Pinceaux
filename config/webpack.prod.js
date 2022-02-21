@@ -15,6 +15,9 @@ module.exports = merge(common, {
     }),
     // Stats bundle
     new BundleStatsWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      favicon: "src/assets/favicon.ico"
+    }),
   ],
   module: {
     rules: [
@@ -27,7 +30,7 @@ module.exports = merge(common, {
           },
           {
             loader: 'css-loader',
-            options: { 
+            options: {
               sourceMap: true,
               importLoaders: 3
             },
