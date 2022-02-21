@@ -17,7 +17,7 @@ module.exports = merge(common, {
     // Stats bundle
     new BundleStatsWebpackPlugin(),
     new HtmlWebpackPlugin({
-      favicon: "src/assets/favicon.ico"
+      favicon: "/favicon.ico"
     }),
   ],
   module: {

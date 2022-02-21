@@ -2,6 +2,7 @@ const paths = require('./paths');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const port = 8080;
 
@@ -12,7 +13,7 @@ module.exports = merge(common, {
     // Recharge uniquement ce qu'il y a besoin
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      favicon: "src/assets/favicon.ico"
+      favicon: "/favicon.ico"
     }),
   ],
   module: {
