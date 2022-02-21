@@ -7,7 +7,7 @@ import { setItemId } from '../../actions/artwork';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
-const ArtworkList = ({id, title, photo_id}) => {
+const ArtworkList = ({id, photo_id}) => {
 
   const history = useHistory();
   const dispatch = useDispatch();

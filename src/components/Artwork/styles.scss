@@ -23,6 +23,37 @@
       }
     }
   }
+  &__filters {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 1rem;
+    transition: all 1s ease 0s;
+    &__type, &__value {
+      align-items: center;
+      &__label {
+        padding-right: 1rem;
+      }
+      &__select {
+        border-radius: 5px;
+        border: 1px solid vars.$pesto;
+        height: 2rem;
+        min-width: 8rem;
+      }
+    }
+    &__submit {
+      color: vars.$sea-buckthorn;
+      background-color: vars.$rock-spray;
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: vars.$title;
+      height: 2rem;
+      padding: 0 1rem;
+      margin-left: 2rem;
+    }
+  }
   &__list {
     display: flex;
     justify-content: space-evenly;
@@ -134,6 +165,10 @@
         line-height: 2rem;
       }
     }
+  }
+  &__message {
+    text-align: center;
+    padding: 2rem 1rem;
   }
 }
 

@@ -22,3 +22,10 @@ export const setContact = (contact) => ({
   type: SET_CONTACT,
   contact,
 });
+
+export const DELETE_CONTACT = 'DELETE_CONTACT';
+
+export const deleteContact = (id) => ({
+  type: DELETE_CONTACT,
+  id,
+});

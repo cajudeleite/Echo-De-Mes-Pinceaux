@@ -15,9 +15,8 @@ const Contact = () => {
         <h1 className='contact__container__title'>Formulaire de contact</h1>
         <ContactForm setAlert={setAlert} />
       </div>}
-      {!logged && alert && <PageAlert />}
-      {logged && <ContactList />}
-
+      {logged && !alert && <ContactList setAlert={setAlert} />}
+      {alert && <PageAlert />}
     </section>
   );
 };

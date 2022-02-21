@@ -1,11 +1,21 @@
 import './styles.scss';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../actions/contact';
 
-const ContactListItem = ({id, last_name, first_name, e_mail, title, message, artwork_id}) => {
 
+const ContactListItem = ({id, last_name, first_name, e_mail, title, message, artwork_id, setAlert}) => {
+
+  const dispatch = useDispatch();
 
   return (
     <div className="contact__list__item">
+      <button className="contact__list__item__message__top__delete" onClick={() => {
+        setAlert(true);
+        dispatch(deleteContact(id));
+      }}><FontAwesomeIcon className="contact__list__item__message__top__delete__trash" icon={faTrashCan} /></button>
       <div className="contact__list__item__name">
         <h2>{first_name} {last_name}</h2>
       </div>
@@ -30,6 +40,7 @@ ContactListItem.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   artwork_id: PropTypes.number.isRequired,
+  setAlert: PropTypes.func.isRequired,
 }
 
 export default ContactListItem;

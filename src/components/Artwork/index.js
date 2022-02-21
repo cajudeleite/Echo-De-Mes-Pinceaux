@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { simplifyArtworks } from '../../utils';
 import ArtworkList from './artworklist';
+import ArtworkFilters from './filter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
@@ -16,16 +17,27 @@ const ArtworkPage = () => {
   const dispatch = useDispatch();
   const logged = localStorage.getItem('logged') === 'true';
   const [artwork, setArtwork] = useState([]);
-  const [cookies, setCookie] = useCookies(['artworkMethod']);
-
-  useEffect(() => {
+  const [type, setType] = useState('none');
+  const [value, setValue] = useState('none');
+  const [cookies, setCookie, removeCookie] = useCookies(['artworkMethod']);
+  const getArtworks = () => {
     axios
       .get('https://v1-echo-de-mes-pinceaux.herokuapp.com/artworks')
       .then(
         (response) => {
           const artworkArray = response.data;
           const simplifiedArray = simplifyArtworks(artworkArray);
-          setArtwork(simplifiedArray);
+          if (type !== 'none' && value !== 'none') {
+            const newArray = [];
+            simplifiedArray.map((item) => {
+              if (item[type] === parseInt(value, 10)) {
+                newArray.push(item);
+              };
+            });
+            setArtwork(newArray);
+          } else {
+            setArtwork(simplifiedArray);
+          };
         },
       )
       .catch(
@@ -33,6 +45,10 @@ const ArtworkPage = () => {
           console.log(error);
         },
       );
+  };
+
+  useEffect(() => {
+    getArtworks();
   }, []);
 
   return (
@@ -51,9 +67,11 @@ const ArtworkPage = () => {
           history.push('/artwork/create');
         }}>Nouvelle Publication <FontAwesomeIcon className="artwork__create__button__plus" icon={faPlus} /></button>
       </div>}
-      <div className="artwork__list">
+      <ArtworkFilters type={type} setType={setType} value={value} setValue={setValue} search={getArtworks} />
+      {artwork.length > 0 && <div className="artwork__list">
         {artwork.map((artwork) => <ArtworkList id={artwork.id} title={artwork.title} photo_id={artwork.photo_id}/>,)}
-      </div>
+      </div>}
+      {artwork.length === 0 && <h2 className='artwork__message'>Il n'y a pas de rèsultats selon vos paramétres de recherche</h2>}
     </section>
   );
 };
