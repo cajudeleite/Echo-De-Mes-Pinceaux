@@ -3,6 +3,14 @@
 .artwork {
   width: 70%;
   background-color: vars.$pampas;
+  &__disclaimer {
+    font-family: vars.$title;
+    text-align: center;
+    color: vars.$rock-spray;
+    font-size: 30px;
+    padding: 1rem 2rem;
+    font-weight: bold;
+  }
   &__create {
     width: 100%;
     display: flex;
@@ -167,6 +175,7 @@
 
 @media screen and(max-width: 767px) {
   .artwork {
+    width: 100%;
     &__item {
       &__photo {
         width: 100%;

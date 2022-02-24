@@ -68,6 +68,7 @@ const ArtworkPage = () => {
         }}>Nouvelle Publication <FontAwesomeIcon className="artwork__create__button__plus" icon={faPlus} /></button>
       </div>}
       <ArtworkFilters type={type} setType={setType} value={value} setValue={setValue} search={getArtworks} />
+      <h2 className='artwork__disclaimer'>Cliquez sur les réalisations pour naviguer</h2>
       {artwork.length > 0 && <div className="artwork__list">
         {artwork.map((artwork) => <ArtworkList id={artwork.id} title={artwork.title} photo_id={artwork.photo_id}/>,)}
       </div>}
