@@ -9,10 +9,12 @@ import chantal from 'src/assets/photos/A-Chantal.JPG';
 import { useCookies } from 'react-cookie';
 import { useLayoutEffect } from 'react';
 import HomeCarousel from './carousel';
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
 
   const [cookies, setCookie, removeCookie] = useCookies(['reload']);
+  const history = useHistory;
 
   useLayoutEffect(() => {
     if (cookies.reload) {
@@ -36,7 +38,7 @@ const Home = () => {
         <p>Ce site vient de la question rècurrente entendue lors de mes expositions : « oú peut-on voir ce que vous faites ? ».</p>
         <p>Il ètait donc temps de m'y mettre.</p>
         <p>Une marche á suivre trés souple vous permet de dècouvrir les œuvres par <u>dates</u>, <u>collections</u> ou <u>techniques</u>.</p>
-        <p>N'hèsitez pas á me <u>contacter</u>, ou laisser á votre tour un petit ècho á celui de mes pinceaux…</p>
+        <p>N'hèsitez pas á me <u onClick={() => history.push('/contact')}>contacter</u>, ou laisser á votre tour un petit ècho á celui de mes pinceaux…</p>
         <p className='home__text__first__strong'>Une grande diversitè dans les techniques, les supports et les dècors.</p>
         <p>Un univers variè qui me rend inclassable.</p>
         <p>Je dirais même que je suis èclectique. Tout m'intèresse.</p>

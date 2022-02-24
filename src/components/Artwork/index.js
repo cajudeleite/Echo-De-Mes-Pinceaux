@@ -36,7 +36,7 @@ const ArtworkPage = () => {
             });
             setArtwork(newArray);
           } else {
-            setArtwork(simplifiedArray);
+            setArtwork(simplifiedArray.reverse());
           };
         },
       )
