@@ -153,6 +153,36 @@
       }
     }
   }
+  &__carousel {
+    .carousel-status {
+      z-index: 3 !important;
+    }
+    &__image {
+      background: none !important;
+      z-index: 1 !important;
+      object-fit: contain;
+      max-height: 75vh;
+
+    }
+    &__left, &__right {
+      width: 3rem;
+      position: absolute;
+      z-index: 2;
+      height: 100%;
+      border: none;
+      background: rgba(48,48,48, 0);
+      transition: all 500ms cubic-bezier(0.61, 1, 0.88, 1) 0s;
+      color: vars.$pewter;
+      font-size: 20px;
+    }
+    &__left:hover, &__right:hover {
+      background: rgba(48,48,48, 0.3);
+    }
+    &__right {
+      right: 0;
+      top: 0;
+    }
+  }
 }
 
 @media screen and (max-width: 1300px) {

@@ -13,6 +13,7 @@ const CookieCard = ({methodAccept, methodDecline}) => {
               methodAccept("allowCookies", "true", {
                 path: "/"
               });
+              methodDecline(false);
             }}>Oui</button>
             <button className="cookies__container__card__buttons__decline" onClick={() => {
               methodDecline(false);

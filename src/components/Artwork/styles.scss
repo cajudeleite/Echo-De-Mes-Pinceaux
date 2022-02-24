@@ -117,7 +117,9 @@
       }
     }
     &__photo {
-      width: 50% !important;
+      width: 50%;
+      height: fit-content;
+      padding: 0 2rem 1rem;
       &__image {
         object-fit: cover;
         min-height: 250px;
@@ -127,20 +129,10 @@
         border-style: double;
         background-color: #DF9C34;
       }
-      &__arrow {
-        color: vars.$pampas;
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        bottom: 50%;
-        width: 100%;
-        padding: 0 2rem;
-        font-size: 2rem;
-      }
     }
     &__text {
       padding-right: 3rem;
-      width: 50% !important;
+      width: 50%;
       &__title {
         font-family: vars.$title;
         font-size: 2rem;
@@ -174,6 +166,14 @@
 
 @media screen and(max-width: 767px) {
   .artwork {
-    width: 100%;
+    &__item {
+      &__photo {
+        width: 100%;
+      }
+      &__text {
+        width: 100%;
+        padding: 1rem 2rem;
+      }
+    }
   }
 }

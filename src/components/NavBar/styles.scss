@@ -9,6 +9,7 @@
   background-color: vars.$rock-spray;
   color: vars.$pampas;
   align-items: center;
+  z-index: 4;
   &__logo {
     font-family: vars.$logo;
     font-size: 50px;

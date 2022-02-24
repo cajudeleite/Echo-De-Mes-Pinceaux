@@ -9,7 +9,7 @@ import ArtworkPage from '../Artwork';
 import ArtworkItem from '../Artwork/item';
 import { useCookies } from "react-cookie";
 import CookieCard from '../Cookies';
-import { useState, useLayoutEffect } from 'react';
+import { useState, useLayoutEffect, useEffect } from 'react';
 
 const App = () => {
 
@@ -21,6 +21,14 @@ const App = () => {
     if (cookies.allowCookies) {
       setCookieCard(false);
     }
+  });
+
+  useEffect(() => {
+    if (cookieCard) {
+      document.body.classList.add('stop-scrolling');
+    } else {
+      document.body.classList.remove('stop-scrolling');
+    };
   });
 
   return(
