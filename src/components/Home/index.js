@@ -8,12 +8,13 @@ import chantalExpo from 'src/assets/photos/20191201_EXPO.jpg';
 import chantal from 'src/assets/photos/A-Chantal.JPG';
 import { useCookies } from 'react-cookie';
 import { useLayoutEffect } from 'react';
+import HomeCarousel from './carousel';
 import { useHistory } from 'react-router-dom';
 
 const Home = () => {
 
   const [cookies, setCookie, removeCookie] = useCookies(['reload']);
-  const history = useHistory();
+  const history = useHistory;
 
   useLayoutEffect(() => {
     if (cookies.reload) {
