@@ -5,7 +5,7 @@ import { simplifyArtworks } from '../../utils';
 import ArtworkList from './artworklist';
 import ArtworkFilters from './filter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setFormMethod } from '../../actions/artwork';
@@ -67,6 +67,7 @@ const ArtworkPage = () => {
           history.push('/artwork/create');
         }}>Nouvelle Publication <FontAwesomeIcon className="artwork__create__button__plus" icon={faPlus} /></button>
       </div>}
+      {value && type && <button className="artwork__item__top__back_button" onClick={() => window.location.reload()}><FontAwesomeIcon className="artwork__item__top__back_button__left_arrow" icon={faArrowLeftLong} /> Revenir en arrière</button>}
       <ArtworkFilters type={type} setType={setType} value={value} setValue={setValue} search={getArtworks} />
       <h2 className='artwork__disclaimer'>Cliquez sur les réalisations pour naviguer</h2>
       {artwork.length > 0 && <div className="artwork__list">
