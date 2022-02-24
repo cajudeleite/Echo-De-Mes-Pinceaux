@@ -124,7 +124,7 @@ const ArtworkForm = () => {
           <ArtworkDropdownInput value={year} setValue={setYear} label='Année' list={yearsList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel} />
           <ArtworkDropdownInput value={technique} setValue={setTechnique} label='Techniques' list={techniquesList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel} />
           <ArtworkDropdownInput value={collection} setValue={setCollection} label='Collections' list={collectionsList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel} />
-          <ArtworkDropdownInput value={status} setValue={setStatus} label='Status' list={statusesList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel}/>
+          <ArtworkDropdownInput value={status} setValue={setStatus} label='Statuts' list={statusesList} modalValue={modal} setModalValue={setModal} setModalLabel={setModalLabel}/>
           <ArtworkFileInput setValue={setPhoto} label='Photo'/>
           {(photo.length > 0) && <PhotoPreview photo_id={photo}/>}
           <ArtworkTextAreaInput value={description} setValue={setDescription} label='Descrition'/>

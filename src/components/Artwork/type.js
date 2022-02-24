@@ -26,7 +26,7 @@ const TypeFilter = ({type, setType}) => {
         <option key='year' value='year_id'>Année</option>
         <option key='technique' value='technique_id'>Technique</option>
         <option key='collection' value='collection_id'>Collection</option>
-        <option key='status' value='status_id'>Status</option>
+        <option key='status' value='status_id'>Statut</option>
       </select>
     </div>
   );
