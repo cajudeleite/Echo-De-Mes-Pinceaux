@@ -11,6 +11,7 @@ import { setFormMethod, deleteArtwork } from '../../actions/artwork';
 import { faChevronLeft, faChevronRight, faArrowLeftLong, faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import PageAlert from '../PageAlert';
 import { useCookies } from 'react-cookie';
+import { Carousel } from 'react-responsive-carousel';
 
 const ArtworkItem = () => {
 
@@ -21,7 +22,6 @@ const ArtworkItem = () => {
   const [description, setDescription] = useState('');
   const descriptionArray = description.split('\n');
   const [photoArray, setPhotoArray] = useState([]);
-  const [n, setN] = useState(0);
   const [yearName, setYearName] = useState('');
   const [techniqueName, setTechniqueName] = useState('');
   const [collectionName, setCollectionName] = useState('');
@@ -29,7 +29,6 @@ const ArtworkItem = () => {
   const [alert, setAlert] = useState(false);
   const [cookies, setCookie] = useCookies(['artworkMethod']);
   const id = useSelector((state) => state.artwork.item_id);
-  const image = document.querySelector('.artwork__item__photo__image');
   const cookiedId = () => {
     if (cookies.artworkId) {
       return cookies.artworkId;
@@ -82,26 +81,6 @@ const ArtworkItem = () => {
     }
   });
 
-  const changePhotoPlus = () => {
-    checkImage();
-    if (photoArray.length === n + 1 && photoArray.length > 1) {
-      setN(0);
-    } else if (photoArray.length > 1) {
-      setN(n + 1);
-    };
-    checkImage();
-  };
-
-  const changePhotoLess = () => {
-    checkImage();
-    if (n === 0 && photoArray.length > 1) {
-      setN(photoArray.length - 1);
-    } else if (photoArray.length > 1) {
-      setN(n - 1);
-    };
-    checkImage();
-  };
-
   useEffect(() => {
     axios
       .get(`https://v1-echo-de-mes-pinceaux.herokuapp.com/artworks/${cookiedId()}`)
@@ -123,20 +102,6 @@ const ArtworkItem = () => {
         },
       );
   }, []);
-
-    const checkImage = () => {
-      if (image && (image.offsetWidth >= image.offsetHeight)) {
-        document.querySelector('.artwork__item__photo').style.padding = "0 2rem";
-        document.querySelector('.artwork__item__photo').style.width = "40%";
-        document.querySelector('.artwork__item__text').style.width = "60%";
-      } else if (image && (image.offsetWidth < image.offsetHeight)) {
-        document.querySelector('.artwork__item__photo').style.padding = "0 3rem";
-        document.querySelector('.artwork__item__photo').style.width = "35%";
-        document.querySelector('.artwork__item__text').style.width = "65%";
-      }
-    }
-
-    checkImage();
 
   return (
     <div className='artwork__item'>
@@ -161,24 +126,25 @@ const ArtworkItem = () => {
           }}>Supprimer <FontAwesomeIcon className="artwork__item__top__last_buttons__delete__trash" icon={faTrashCan} /></button>
         </div>}
       </div>}
-      {!alert && <div className="artwork__item__photo">
-        <AdvancedImage
+      {!alert && <Carousel showThumbs={false} selectedItem={photoArray.length - 1} className="artwork__item__photo" autoPlay={true} interval={5000} emulateTouch={true} swipeable={true} infiniteLoop={true} dynamicHeight={true} renderArrowPrev={(onClickHandler, hasPrev, label) =>
+        hasPrev && (
+          <button className='home__carousel__left' type="button" onClick={onClickHandler} title={label}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+        )
+      } renderArrowNext={(onClickHandler, hasNext, label) =>
+        hasNext && (
+          <button className='home__carousel__right' type="button" onClick={onClickHandler} title={label}>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        )
+      }>
+        {photoArray.map((item) => <AdvancedImage
           key={cookiedId()}
-          id='image'
           className="artwork__item__photo__image"
-          cldImg={cld.image(photoArray[n])}
-        />
-        {photoArray.length > 1 && <div className="artwork__item__photo__arrow">
-          <FontAwesomeIcon className="artwork__item__photo__arrow__left" icon={faChevronLeft} onClick={() => {
-            changePhotoLess();
-            checkImage();
-          }} />
-          <FontAwesomeIcon className="artwork__item__photo__arrow__right" icon={faChevronRight} onClick={() => {
-            changePhotoPlus();
-            checkImage();
-          }} />
-        </div>}
-      </div>}
+          cldImg={cld.image(item)}
+        />)}
+      </Carousel>}
       {!alert && <div className="artwork__item__text">
         <h1 className='artwork__item__text__title'>{title}</h1>
         <p className='artwork__item__text__dateandtechnique'>{yearName} / {textTreatment(techniqueName)}</p>
