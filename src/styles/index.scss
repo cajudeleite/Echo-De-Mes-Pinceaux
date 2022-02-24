@@ -10,6 +10,11 @@ body {
   color: vars.$pesto;
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 /*
   // or you can import your own font
   @font-face {
