@@ -11,7 +11,7 @@ const Link = ({name, link, simulateClick}) => {
     if (simulateClick) {
       simulateClick();
     };
-    if ((name === 'Contact' || name === 'Connexion') && cookies.allowCookies) {
+    if (name === 'Contact' && cookies.allowCookies) {
       setCookie('inputFocus', 'true', {
         path: "/"
       });
