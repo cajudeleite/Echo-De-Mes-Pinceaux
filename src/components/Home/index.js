@@ -25,7 +25,6 @@ const Home = () => {
 
   return (
     <section className="home">
-      <HomeCarousel />
       <div className="home__text__first">
         <p className='home__text__first__strong'>Bienvenue á « L'ècho de mes pinceaux », sur mon site qui voudrait être avant tout un partage de mes passions !</p>
         <div className="home__simpleimage__first">
