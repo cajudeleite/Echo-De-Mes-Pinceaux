@@ -10,11 +10,12 @@ import { useCookies } from 'react-cookie';
 import { useLayoutEffect } from 'react';
 import HomeCarousel from './carousel';
 import { useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
 
   const [cookies, setCookie, removeCookie] = useCookies(['reload']);
-  const history = useHistory;
+  const history = useHistory();
 
   useLayoutEffect(() => {
     if (cookies.reload) {
@@ -36,8 +37,8 @@ const Home = () => {
         <p>C'est un rèel plaisir de partager avec vous les joies crèatrices d'un univers oú la peinture et le dessin ont ètè mes compagnons depuis toujours. Aprés avoir consacrè une bonne partie de ma vie professionnelle á l'enseignement universitaire et contemplè les œuvres d'art, j'ai eu envie de mettre mes pinceaux á l'œuvre.</p>
         <p>Ce site vient de la question rècurrente entendue lors de mes expositions : « oú peut-on voir ce que vous faites ? ».</p>
         <p>Il ètait donc temps de m'y mettre.</p>
-        <p>Une marche á suivre trés souple vous permet de dècouvrir les œuvres par <u>dates</u>, <u>collections</u> ou <u>techniques</u>.</p>
-        <p>N'hèsitez pas á me <u onClick={() => history.push()}>contacter</u>, ou laisser á votre tour un petit ècho á celui de mes pinceaux…</p>
+        <p>Une marche á suivre trés souple vous permet de dècouvrir les œuvres par dates, collections ou techniques.</p>
+        <p>N'hèsitez pas á me <u><NavLink to="/contact">contacter</NavLink></u>, ou laisser á votre tour un petit ècho á celui de mes pinceaux…</p>
         <p className='home__text__first__strong'>Une grande diversitè dans les techniques, les supports et les dècors.</p>
         <p>Un univers variè qui me rend inclassable.</p>
         <p>Je dirais même que je suis èclectique. Tout m'intèresse.</p>
@@ -58,7 +59,7 @@ const Home = () => {
         <div className="home__image-text__second__text">
           <div className="home__image-text__second__text__container">
             <p className='home__image-text__second__text__container__strong'>Eclectisme dans les supports et leurs dècors:</p>
-            <p>Le <u>mètal</u>, les galets, tout se prête facilement au jeu… Rien de plus amusant que de redonner vie á de vieux objets, á des meubles, á transformer les vieux seaux á charbons de nos grands-parents en porte-parapluie dècoratifs. Ou les <u>galets</u>, joies de l'Ocèan de mon enfance, en presse-papiers ludiques et dècoratifs..</p>
+            <p>Le mètal, les galets, tout se prête facilement au jeu… Rien de plus amusant que de redonner vie á de vieux objets, á des meubles, á transformer les vieux seaux á charbons de nos grands-parents en porte-parapluie dècoratifs. Ou les galets, joies de l'Ocèan de mon enfance, en presse-papiers ludiques et dècoratifs..</p>
           </div>
         </div>
         <div className="home__image-text__second__photo">
