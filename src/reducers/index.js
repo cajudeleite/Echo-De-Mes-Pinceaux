@@ -6,6 +6,7 @@ import collectionsReducer from './collections';
 import statusesReducer from './statuses';
 import artworksReducer from './artworks';
 import contactReducer from './contact';
+import commentReducer from './comments';
 import alertReducer from './alert';
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   collection: collectionsReducer,
   status: statusesReducer,
   contact: contactReducer,
+  comment: commentReducer,
   alert: alertReducer,
 });
 

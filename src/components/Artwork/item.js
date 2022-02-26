@@ -12,6 +12,7 @@ import { faChevronLeft, faChevronRight, faArrowLeftLong, faPencil, faTrashCan } 
 import PageAlert from '../PageAlert';
 import { useCookies } from 'react-cookie';
 import { Carousel } from 'react-responsive-carousel';
+import Comments from './comments';
 
 const ArtworkItem = () => {
 
@@ -152,6 +153,7 @@ const ArtworkItem = () => {
         <p className='artwork__item__text__status'>{textTreatment(statusName)}</p>
         {descriptionArray.map((item) => <p className='artwork__item__text__description'>{textTreatment(item)}</p>,<br></br>)}
       </div>}
+      {!alert && <Comments artworkId={cookiedId()} setAlert={setAlert} />}
       {alert && <PageAlert />}
     </div>
   );
