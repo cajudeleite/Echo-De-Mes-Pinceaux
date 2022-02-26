@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { simplifyList, simplifyContact } from '../utils';
+import { simplifyList, simplifyContact, simplifyComment } from '../utils';
 
 import { GET_YEARS_FROM_API, setYears, POST_YEAR } from '../actions/year';
 import { GET_TECHNIQUES_FROM_API, setTechniques, POST_TECHNIQUE } from '../actions/technique';
@@ -8,6 +8,7 @@ import { GET_COLLECTIONS_FROM_API, setCollections, POST_COLLECTION } from '../ac
 import { GET_STATUSES_FROM_API, setStatus, POST_STATUS } from '../actions/status';
 import { POST_ARTWORK, UPDATE_ARTWORK, DELETE_ARTWORK } from '../actions/artwork';
 import { POST_CONTACT, GET_CONTACT, setContact, DELETE_CONTACT } from '../actions/contact';
+import { POST_COMMENT, GET_COMMENT, setComment, DELETE_COMMENT } from '../actions/comment';
 import { setAlert } from '../actions/alert';
 import { AUTHENTICATE } from '../actions/authenticate';
 
@@ -183,6 +184,30 @@ export const dataMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
+    case GET_CONTACT: {
+      const token = localStorage.getItem('token');
+      const options = {
+        headers: {
+          'Authorization': token,
+        }
+      };
+      api
+        .get('/contacts', options)
+        .then(
+          (response) => {
+            const contactList = response.data;
+            const simplifiedContact = simplifyContact(contactList);
+            store.dispatch(setContact(simplifiedContact));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+          },
+        );
+      next(action);
+      break;
+    }
     case POST_CONTACT: {
       const data = {
         last_name: action.last_name,
@@ -233,6 +258,88 @@ export const dataMiddleware = (store) => (next) => (action) => {
           (error) => {
             console.log(error);
             store.dispatch(setAlert('Il y a eu un problème lors de la suppression du message de contact', 'Réessayer', 'reload'));
+          },
+        );
+      next(action);
+      break;
+    }
+    case GET_COMMENT: {
+      const token = localStorage.getItem('token');
+      const options = {
+        headers: {
+          'Authorization': token,
+        }
+      };
+      api
+        .get('/comments', options)
+        .then(
+          (response) => {
+            const commentList = response.data;
+            const temporaryArray = [];
+            const simplifiedComment = simplifyComment(commentList);
+            simplifiedComment.map((comment) => {
+              if (comment.artwork_id == action.artwork_id) {
+                temporaryArray.push(comment);
+              }
+            });
+            store.dispatch(setComment(temporaryArray));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+          },
+        );
+      next(action);
+      break;
+    }
+    case POST_COMMENT: {
+      const data = {
+        username: action.username,
+        message: action.message,
+        artwork_id: action.artwork_id,
+      };
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      };
+      api
+        .post('/comments', data, options)
+        .then(
+          (response) => {
+            console.log(response);
+            store.dispatch(setAlert('Votre commentaire a été publiée avec succès', 'OK', 'reload'));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre commentaire', 'Réessayer', 'reload'));
+          },
+        );
+      next(action);
+      break;
+    }
+    case DELETE_COMMENT: {
+      const token = localStorage.getItem('token');
+      const options = {
+        headers: {
+          'Authorization': token,
+        }
+      };
+      api
+        .delete(`/comments/${action.id}`, options)
+        .then(
+          (response) => {
+            console.log(response);
+            store.dispatch(setAlert('Le commentaire a été supprimée avec succès', 'OK', 'reload'));
+          },
+        )
+        .catch(
+          (error) => {
+            console.log(error);
+            store.dispatch(setAlert('Il y a eu un problème lors de la suppression du commentaire', 'Réessayer', 'reload'));
           },
         );
       next(action);
@@ -373,30 +480,6 @@ export const dataMiddleware = (store) => (next) => (action) => {
           (error) => {
             console.log(error);
             store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre status', 'OK', 'reload'));
-          },
-        );
-      next(action);
-      break;
-    }
-    case GET_CONTACT: {
-      const token = localStorage.getItem('token');
-      const options = {
-        headers: {
-          'Authorization': token,
-        }
-      };
-      api
-        .get('/contacts', options)
-        .then(
-          (response) => {
-            const contactList = response.data;
-            const simplifiedContact = simplifyContact(contactList);
-            store.dispatch(setContact(simplifiedContact));
-          },
-        )
-        .catch(
-          (error) => {
-            console.log(error);
           },
         );
       next(action);

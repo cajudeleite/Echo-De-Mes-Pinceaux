@@ -47,6 +47,6 @@ const ArtworkFileInput = ({ setValue, label }) => {
 ArtworkFileInput.propTypes = {
   setValue: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-}
+};
 
 export default ArtworkFileInput;

@@ -35,3 +35,15 @@ export const simplifyContact = (list) => (
     }),
   )
 );
+
+export const simplifyComment = (list) => (
+  list.map(
+    (item) => ({
+      id: item.id,
+      username: item.username,
+      message: item.message,
+      artwork_id: item.artwork_id,
+      created_at: item.created_at,
+    }),
+  )
+);

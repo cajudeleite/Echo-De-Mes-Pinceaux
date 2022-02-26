@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../actions/contact';
 
 
-const ContactListItem = ({id, last_name, first_name, e_mail, title, message, artwork_id, setAlert}) => {
+const ContactListItem = ({id, last_name, first_name, e_mail, title, message, setAlert}) => {
 
   const dispatch = useDispatch();
 
@@ -39,7 +39,6 @@ ContactListItem.propTypes = {
   e_mail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
-  artwork_id: PropTypes.number.isRequired,
   setAlert: PropTypes.func.isRequired,
 }
 
