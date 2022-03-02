@@ -152,7 +152,9 @@
           font-weight: bold;
           color: vars.$rock-spray;
           padding-bottom: 1rem;
-          text-transform: capitalize;
+        }
+        &__title::first-letter {
+          text-transform: uppercase;
         }
         &__dateandtechnique {
           font-style: italic;
