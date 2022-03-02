@@ -82,6 +82,7 @@
   &__item {
     flex-wrap: wrap;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     width: 100%;
     &__top {
@@ -101,82 +102,115 @@
         height: 100%;
         display: flex;
         align-items: center;
-        &__edit {
-          color: vars.$rock-spray;
-          background-color: vars.$sea-buckthorn;
+        &__edit, &__delete {
           border: none;
           border-radius: 5px;
           font-size: 20px;
           font-family: vars.$title;
           height: 2rem;
           padding: 0 1rem;
+        }
+        &__edit {
+          color: vars.$rock-spray;
+          background-color: vars.$sea-buckthorn;
         }
         &__delete {
           color: vars.$sea-buckthorn;
           background-color: vars.$rock-spray;
-          border: none;
-          border-radius: 5px;
-          font-size: 20px;
-          font-family: vars.$title;
-          height: 2rem;
-          padding: 0 1rem;
           margin-left: 2rem;
         }
       }
     }
-    &__photo {
+    &__content {
+      display: flex;
       background-color: vars.$pampas;
-      width: 50%;
-      height: fit-content;
-      padding: 0 2rem 1rem;
-      &__image {
-        object-fit: cover;
-        min-height: 250px;
-        width: 100%;
-        border-radius: 5px;
-        border: 15px solid vars.$rock-spray;
-        border-style: double;
-        background-color: #DF9C34;
+      &__photo {
+        background-color: vars.$pampas;
+        width: 50%;
+        height: 100%;
+        height: fit-content;
+        padding: 0 2rem 1rem;
+        &__image {
+          object-fit: cover;
+          min-height: 250px;
+          width: 100%;
+          border-radius: 5px;
+          border: 15px solid vars.$rock-spray;
+          border-style: double;
+          background-color: #DF9C34;
+        }
       }
-    }
-    &__text {
-      background-color: vars.$pampas;
-      padding-right: 3rem;
-      width: 50%;
-      &__title {
-        font-family: vars.$title;
-        font-size: 2rem;
-        font-weight: bold;
-        color: vars.$rock-spray;
-        padding-bottom: 1rem;
-        text-transform: capitalize;
-      }
-      &__dateandtechnique {
-        font-style: italic;
-        padding-bottom: 1rem;
-      }
-      &__collection {
-        padding-bottom: 1rem;
-      }
-      &__status {
-        color: vars.$pewter;
-        padding-bottom: 1rem;
-      }
-      &__description {
-        text-align: justify;
-        text-justify: inter-word;
-        line-height: 2rem;
+      &__text {
+        background-color: vars.$pampas;
+        padding-right: 3rem;
+        width: 50%;
+        height: 100%;
+        justify-items: flex-start;
+        &__title {
+          font-family: vars.$title;
+          font-size: 2rem;
+          font-weight: bold;
+          color: vars.$rock-spray;
+          padding-bottom: 1rem;
+          text-transform: capitalize;
+        }
+        &__dateandtechnique {
+          font-style: italic;
+          padding-bottom: 1rem;
+        }
+        &__collection {
+          padding-bottom: 1rem;
+        }
+        &__status {
+          color: vars.$pewter;
+          padding-bottom: 1rem;
+        }
+        &__description {
+          text-align: justify;
+          text-justify: inter-word;
+          line-height: 2rem;
+        }
       }
     }
     &__comments {
       width: 100%;
+      &__title {
+        font-family: vars.$title;
+        color: vars.$rock-spray;
+        text-align: center;
+        font-size: 30px;
+        padding: 3rem 0 1rem;
+        background-color: vars.$pampas;
+      }
       &__form_container {
         background-color: vars.$pampas;
         width: 100%;
         padding: 1rem 2rem;
         display: flex;
+        justify-content: center;
         &__form {
           display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: baseline;
+          &__username, &__message {
+            padding: 1rem 1rem 1rem 0;
+            &__label {
+              padding-right: 1rem;
+            }
+          }
+          &__submit {
+            color: vars.$rock-spray;
+            background-color: vars.$sea-buckthorn;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            font-family: vars.$title;
+            height: 2rem;
+            padding: 0 1rem;
+            margin-left: 1rem;
+            cursor: pointer;
+          }
         }
       }
       &__list {
@@ -193,7 +227,8 @@
           text-align: center;
           font-size: 30px;
           font-weight: bold;
-          padding: 2rem;
+          padding: 2rem 0;
+          margin: 2rem 0;
         }
         &__item {
           margin: 2rem 0;
@@ -265,12 +300,15 @@
   .artwork {
     width: 100%;
     &__item {
-      &__photo {
-        width: 100%;
-      }
-      &__text {
-        width: 100%;
-        padding: 1rem 2rem;
+      &__content {
+        flex-direction: column  ;
+        &__photo {
+          width: 100%;
+        }
+        &__text {
+          width: 100%;
+          padding: 1rem 2rem;
+        }
       }
       &__comments {
         &__list {
@@ -294,6 +332,20 @@
                 border-left: 5px solid vars.$sea-buckthorn;
               }
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and(max-width: 540px) {
+  .artwork {
+    &__item {
+      &__top {
+        &__last_buttons {
+          &__edit, &__delete {
+            height: 4rem;
           }
         }
       }

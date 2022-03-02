@@ -50,7 +50,10 @@ const CommentForm = ({artworkId, setAlert}) => {
 };
 
 CommentForm.propTypes = {
-  artworkId: PropTypes.string.isRequired,
+  artworkId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
   setAlert: PropTypes.func.isRequired,
 };
 
