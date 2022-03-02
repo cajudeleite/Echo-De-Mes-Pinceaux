@@ -29,7 +29,7 @@ const PageAlert = () => {
       removeCookie('artworkAnnée');
       removeCookie('artworkTechniques');
       removeCookie('artworkCollections');
-      removeCookie('artworkStatus');
+      removeCookie('artworkStatuts');
       removeCookie('artworkPhoto');
       removeCookie('artworkDescrition');
       removeCookie('artworkMethod');
@@ -38,7 +38,7 @@ const PageAlert = () => {
       removeCookie('artworkAnnée');
       removeCookie('artworkTechniques');
       removeCookie('artworkCollections');
-      removeCookie('artworkStatus');
+      removeCookie('artworkStatuts');
       removeCookie('artworkPhoto');
       removeCookie('artworkDescrition');
       removeCookie('artworkId');

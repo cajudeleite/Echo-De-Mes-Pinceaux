@@ -70,8 +70,8 @@ const ArtworkForm = () => {
     if (cookies.artworkCollections) {
       setCollection(cookies.artworkCollections);
     };
-    if (cookies.artworkStatus) {
-      setStatus(cookies.artworkStatus);
+    if (cookies.artworkStatuts) {
+      setStatus(cookies.artworkStatuts);
     };
     if (cookies.artworkPhoto) {
       setPhoto(cookies.artworkPhoto);
@@ -82,7 +82,7 @@ const ArtworkForm = () => {
     if (cookies.artworkId) {
       setId(cookies.artworkId);
     };
-    const noCookie = !(cookies.artworkTitre && cookies.artworkAnnée && cookies.artworkTechniques && cookies.artworkCollections && cookies.artworkStatus && cookies.artworkPhoto && cookies.artworkDescrition);
+    const noCookie = !(cookies.artworkTitre && cookies.artworkAnnée && cookies.artworkTechniques && cookies.artworkCollections && cookies.artworkStatuts && cookies.artworkPhoto && cookies.artworkDescrition);
     if (cookies.artworkMethod === 'patch' && noCookie) {
       axios
         .get(`https://v1-echo-de-mes-pinceaux.herokuapp.com/artworks/${id}`)

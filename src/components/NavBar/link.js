@@ -20,7 +20,7 @@ const Link = ({name, link, simulateClick}) => {
     if (cookies.artworkAnnée) removeCookie('artworkAnnée');
     if (cookies.artworkTechniques) removeCookie('artworkTechniques');
     if (cookies.artworkCollections) removeCookie('artworkCollections');
-    if (cookies.artworkStatus) removeCookie('artworkStatus');
+    if (cookies.artworkStatuts) removeCookie('artworkStatuts');
     if (cookies.artworkPhoto) removeCookie('artworkPhoto');
     if (cookies.artworkDescrition) removeCookie('artworkDescrition');
   };
