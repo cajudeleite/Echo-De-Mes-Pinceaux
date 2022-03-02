@@ -473,13 +473,13 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .then(
           (response) => {
             console.log(response);
-            store.dispatch(setAlert('Votre status a été publiée avec succès', 'OK', 'reload'));
+            store.dispatch(setAlert('Votre statuts a été publiée avec succès', 'OK', 'reload'));
           },
         )
         .catch(
           (error) => {
             console.log(error);
-            store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre status', 'OK', 'reload'));
+            store.dispatch(setAlert('Il y a eu un problème lors de la publication de votre statuts', 'OK', 'reload'));
           },
         );
       next(action);
