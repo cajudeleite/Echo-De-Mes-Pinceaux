@@ -128,7 +128,7 @@ const ArtworkItem = () => {
         </div>}
       </div>}
       <div className="artwork__item__content">
-        {!alert && <Carousel showThumbs={false} selectedItem={photoArray.length - 1} className="artwork__item__content__photo" autoPlay={true} interval={5000} emulateTouch={true} swipeable={true} infiniteLoop={true} dynamicHeight={true} renderArrowPrev={(onClickHandler, hasPrev, label) =>
+        {!alert && <Carousel showThumbs={false} selectedItem={photoArray.length - 1} className="artwork__item__content__photo" autoPlay={true} interval={10000} emulateTouch={true} swipeable={true} infiniteLoop={true} dynamicHeight={true} renderArrowPrev={(onClickHandler, hasPrev, label) =>
           hasPrev && (
             <button className='home__carousel__left' type="button" onClick={onClickHandler} title={label}>
               <FontAwesomeIcon icon={faChevronLeft} />
