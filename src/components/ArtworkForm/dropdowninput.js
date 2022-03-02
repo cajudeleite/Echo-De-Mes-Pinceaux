@@ -14,7 +14,7 @@ const ArtworkDropdownInput = ({ value, setValue, label, list, modalValue, setMod
     }
     return labelLowerCase;
   };
-  const nouveauFeminin = (labelLowerCase === 'status') ? 'nouveau' : 'nouvelle';
+  const nouveauFeminin = (labelLowerCase === 'statuts') ? 'nouveau' : 'nouvelle';
   const addNew = `Ajouter ${nouveauFeminin} ${labelSingulier()}`;
   const labelChiant = (label === 'Année') ? 'Annèe' : label;
   const cookieName = `artwork${label}`;

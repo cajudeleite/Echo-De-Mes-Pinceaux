@@ -15,6 +15,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    &__back_button {
+      text-align: left;
+      padding: 1rem 0 0 1rem;
+      color: vars.$pesto;
+      background: none;
+      border: none;
+      font-family: vars.$title;
+      font-size: 23px;
+    }
     &__title {
       font-family: vars.$title;
       font-size: 30px;

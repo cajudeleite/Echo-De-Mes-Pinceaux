@@ -13,7 +13,7 @@ const ModalForm = ({ label, setAlert }) => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
   const labelCapitalize = label.charAt(0).toUpperCase() + label.slice(1);
-  const nouveauFeminin = (label === 'status') ? 'nouveau' : 'nouvelle';
+  const nouveauFeminin = (label === 'statuts') ? 'nouveau' : 'nouvelle';
   const title = `Ajouter ${nouveauFeminin} ${label}`;
   const labelChiant = (labelCapitalize === 'Année') ? 'Annèe' : labelCapitalize;
   const [cookies, setCookie, removeCookie] = useCookies(['inputFocus']);
@@ -36,7 +36,7 @@ const ModalForm = ({ label, setAlert }) => {
           dispatch(postTechnique(inputValue));
         } else if (label === 'collection') {
           dispatch(postCollection(inputValue));
-        } else if (label === 'status') {
+        } else if (label === 'statuts') {
           dispatch(postStatus(inputValue));
         }
         setAlert(true);

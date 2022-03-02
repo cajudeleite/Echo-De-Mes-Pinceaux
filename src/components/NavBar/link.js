@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 
 const Link = ({name, link, simulateClick}) => {
 
-  const [cookies, setCookie] = useCookies(['inputFocus']);
+  const [cookies, setCookie, removeCookie] = useCookies(['inputFocus']);
 
   const method = () => {
     if (simulateClick) {
@@ -16,6 +16,13 @@ const Link = ({name, link, simulateClick}) => {
         path: "/"
       });
     };
+    if (cookies.artworkTitre) removeCookie('artworkTitre');
+    if (cookies.artworkAnnée) removeCookie('artworkAnnée');
+    if (cookies.artworkTechniques) removeCookie('artworkTechniques');
+    if (cookies.artworkCollections) removeCookie('artworkCollections');
+    if (cookies.artworkStatus) removeCookie('artworkStatus');
+    if (cookies.artworkPhoto) removeCookie('artworkPhoto');
+    if (cookies.artworkDescrition) removeCookie('artworkDescrition');
   };
 
   return (

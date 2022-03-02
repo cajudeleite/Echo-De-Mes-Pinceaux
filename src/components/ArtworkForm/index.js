@@ -9,6 +9,9 @@ import ArtworkTextAreaInput from './textareainput';
 import ModalForm from './modalform';
 import PhotoPreview from './imagepreview';
 import PageAlert from '../PageAlert';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { useCookies } from 'react-cookie';
 import { getYearsFromApi } from '../../actions/year';
 import { getTechniquesFromApi } from '../../actions/technique';
@@ -19,6 +22,7 @@ import { postArtwork, updateArtwork } from '../../actions/artwork';
 const ArtworkForm = () => {
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [year, setYear] = useState('1');
@@ -109,6 +113,16 @@ const ArtworkForm = () => {
   return (
     <section className="artwork_form">
       {!modal && !alert && <div className="artwork_form__container">
+        <button className="artwork_form__container__back_button" onClick={() => {
+          removeCookie('artworkTitre');
+          removeCookie('artworkAnnée');
+          removeCookie('artworkTechniques');
+          removeCookie('artworkCollections');
+          removeCookie('artworkStatuts');
+          removeCookie('artworkPhoto');
+          removeCookie('artworkDescrition');
+          history.push('/artwork');
+        }}><FontAwesomeIcon className="artwork__item__top__back_button__left_arrow" icon={faArrowLeftLong} /> Revenir en arrière</button>
         <h1 className="artwork_form__container__title">{formTitle()}</h1>
         <form className="artwork_form__container__form" action="" encType='multipart/form-data' method="post" onSubmit={(event) => {
           event.preventDefault();
