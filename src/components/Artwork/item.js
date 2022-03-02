@@ -127,32 +127,34 @@ const ArtworkItem = () => {
           }}>Supprimer <FontAwesomeIcon className="artwork__item__top__last_buttons__delete__trash" icon={faTrashCan} /></button>
         </div>}
       </div>}
-      {!alert && <Carousel showThumbs={false} selectedItem={photoArray.length - 1} className="artwork__item__photo" autoPlay={true} interval={5000} emulateTouch={true} swipeable={true} infiniteLoop={true} dynamicHeight={true} renderArrowPrev={(onClickHandler, hasPrev, label) =>
-        hasPrev && (
-          <button className='home__carousel__left' type="button" onClick={onClickHandler} title={label}>
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </button>
-        )
-      } renderArrowNext={(onClickHandler, hasNext, label) =>
-        hasNext && (
-          <button className='home__carousel__right' type="button" onClick={onClickHandler} title={label}>
-            <FontAwesomeIcon icon={faChevronRight} />
-          </button>
-        )
-      }>
-        {photoArray.map((item) => <AdvancedImage
-          key={cookiedId()}
-          className="artwork__item__photo__image"
-          cldImg={cld.image(item)}
-        />)}
-      </Carousel>}
-      {!alert && <div className="artwork__item__text">
-        <h1 className='artwork__item__text__title'>{title}</h1>
-        <p className='artwork__item__text__dateandtechnique'>{yearName} / {textTreatment(techniqueName)}</p>
-        <p className='artwork__item__text__collection'>{textTreatment(collectionName)}</p>
-        <p className='artwork__item__text__status'>{textTreatment(statusName)}</p>
-        {descriptionArray.map((item) => <p className='artwork__item__text__description'>{textTreatment(item)}</p>,<br></br>)}
-      </div>}
+      <div className="artwork__item__content">
+        {!alert && <Carousel showThumbs={false} selectedItem={photoArray.length - 1} className="artwork__item__content__photo" autoPlay={true} interval={5000} emulateTouch={true} swipeable={true} infiniteLoop={true} dynamicHeight={true} renderArrowPrev={(onClickHandler, hasPrev, label) =>
+          hasPrev && (
+            <button className='home__carousel__left' type="button" onClick={onClickHandler} title={label}>
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+          )
+        } renderArrowNext={(onClickHandler, hasNext, label) =>
+          hasNext && (
+            <button className='home__carousel__right' type="button" onClick={onClickHandler} title={label}>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+          )
+        }>
+          {photoArray.map((item) => <AdvancedImage
+            key={cookiedId()}
+            className="artwork__item__content__photo__image"
+            cldImg={cld.image(item)}
+          />)}
+        </Carousel>}
+        {!alert && <div className="artwork__item__content__text">
+          <h1 className='artwork__item__content__text__title'>{title}</h1>
+          <p className='artwork__item__content__text__dateandtechnique'>{yearName} / {textTreatment(techniqueName)}</p>
+          <p className='artwork__item__content__text__collection'>{textTreatment(collectionName)}</p>
+          <p className='artwork__item__content__text__status'>{textTreatment(statusName)}</p>
+          {descriptionArray.map((item) => <p className='artwork__item__content__text__description'>{textTreatment(item)}</p>,<br></br>)}
+        </div>}
+      </div>
       {!alert && <Comments artworkId={cookiedId()} setAlert={setAlert} />}
       {alert && <PageAlert />}
     </div>

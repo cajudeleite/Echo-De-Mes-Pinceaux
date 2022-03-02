@@ -17,6 +17,7 @@ const Comments = ({artworkId, setAlert}) => {
 
   return (
     <div className='artwork__item__comments'>
+      <h3 className='artwork__item__comments__title'>Écrire nouveau commentaire</h3>
       <CommentForm artworkId={artworkId} setAlert={setAlert} />
       <CommentList commentList={comments} setAlert={setAlert} />
     </div>
@@ -24,7 +25,10 @@ const Comments = ({artworkId, setAlert}) => {
 };
 
 Comments.propTypes = {
-  artworkId: PropTypes.string.isRequired,
+  artworkId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
   setAlert: PropTypes.func.isRequired,
 };
 
