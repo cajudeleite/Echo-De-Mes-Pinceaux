@@ -227,7 +227,7 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .then(
           (response) => {
             console.log(response);
-            store.dispatch(setAlert('Votre message de contact a été publiée avec succès', 'OK', '/'));
+            store.dispatch(setAlert('Votre message de contact a été publié avec succès', 'OK', '/'));
           },
         )
         .catch(
@@ -251,7 +251,7 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .then(
           (response) => {
             console.log(response);
-            store.dispatch(setAlert('Le message de contact a été supprimée avec succès', 'OK', 'reload'));
+            store.dispatch(setAlert('Le message de contact a été supprimé avec succès', 'OK', 'reload'));
           },
         )
         .catch(
@@ -309,7 +309,7 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .then(
           (response) => {
             console.log(response);
-            store.dispatch(setAlert('Votre commentaire a été publiée avec succès', 'OK', 'reload'));
+            store.dispatch(setAlert('Votre commentaire a été publié avec succès', 'OK', 'reload'));
           },
         )
         .catch(
@@ -473,7 +473,7 @@ export const dataMiddleware = (store) => (next) => (action) => {
         .then(
           (response) => {
             console.log(response);
-            store.dispatch(setAlert('Votre statuts a été publiée avec succès', 'OK', 'reload'));
+            store.dispatch(setAlert('Votre statuts a été publié avec succès', 'OK', 'reload'));
           },
         )
         .catch(
