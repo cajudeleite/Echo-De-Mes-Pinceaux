@@ -13,6 +13,7 @@ import PageAlert from '../PageAlert';
 import { useCookies } from 'react-cookie';
 import { Carousel } from 'react-responsive-carousel';
 import Comments from './comments';
+import Description from './description';
 
 const ArtworkItem = () => {
 
@@ -152,7 +153,15 @@ const ArtworkItem = () => {
           <p className='artwork__item__content__text__dateandtechnique'>{yearName} / {textTreatment(techniqueName)}</p>
           <p className='artwork__item__content__text__collection'>{textTreatment(collectionName)}</p>
           <p className='artwork__item__content__text__status'>{textTreatment(statusName)}</p>
-          {descriptionArray.map((item) => <p className='artwork__item__content__text__description'>{textTreatment(item)}</p>,<br></br>)}
+          {descriptionArray.map((item) => {
+            const linkFound = item.match(/(?:www|https?)[^\s]+/g);
+            if (linkFound != null) {
+              return (<p className='artwork__item__content__text__description'>{[item.split(linkFound)[0], linkFound[0], item.split(linkFound)[1]].map((item) => <Description text={item} />)}</p>)
+            } else {
+              return (<p className='artwork__item__content__text__description'><Description text={item} /></p>);
+            }
+          }
+          )}
         </div>}
       </div>
       {!alert && <Comments artworkId={cookiedId()} setAlert={setAlert} />}

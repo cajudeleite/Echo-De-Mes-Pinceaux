@@ -171,6 +171,10 @@
           text-align: justify;
           text-justify: inter-word;
           line-height: 2rem;
+          &__hyperlink {
+            color: vars.$rock-spray;
+            text-decoration: underline;
+          }
         }
       }
     }
