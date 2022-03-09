@@ -158,7 +158,7 @@ const ArtworkItem = () => {
             if (linkFound != null) {
               return (<p className='artwork__item__content__text__description'>{[item.split(linkFound)[0], linkFound[0], item.split(linkFound)[1]].map((item) => <Description text={item} />)}</p>)
             } else {
-              return (<p className='artwork__item__content__text__description'><Description text={item} /></p>);
+              return (<p className='artwork__item__content__text__description'><Description text={item} textTreatment={textTreatment} /></p>);
             }
           }
           )}
