@@ -51,7 +51,7 @@ const ArtworkItem = () => {
     treatedText = treatedText.replace(é, 'è');
     treatedText = treatedText.replace(µ, 'é');
     return treatedText;
-  }
+  };
 
   const idToName = (path, id) => {
     axios

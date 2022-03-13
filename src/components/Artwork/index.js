@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setFormMethod } from '../../actions/artwork';
 import { useCookies } from 'react-cookie';
+import Page from './page';
 
 const ArtworkPage = () => {
 
@@ -19,6 +20,7 @@ const ArtworkPage = () => {
   const [artwork, setArtwork] = useState([]);
   const [type, setType] = useState('none');
   const [value, setValue] = useState('none');
+  const [length, setLength] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies(['artworkMethod']);
   const getArtworks = () => {
     axios
@@ -26,17 +28,23 @@ const ArtworkPage = () => {
       .then(
         (response) => {
           const artworkArray = response.data;
-          const simplifiedArray = simplifyArtworks(artworkArray);
+          let simplifiedArray = simplifyArtworks(artworkArray);
+          simplifiedArray = simplifiedArray.reverse();
           if (type !== 'none' && value !== 'none') {
             const newArray = [];
-            simplifiedArray.map((item) => {
+            simplifiedArray.reverse().map((item) => {
               if (item[type] === parseInt(value, 10)) {
                 newArray.push(item);
               };
             });
             setArtwork(newArray);
           } else {
-            setArtwork(simplifiedArray.reverse());
+            if (cookies.artworkPage == 1) {
+              setArtwork(simplifiedArray.slice(0, 10));
+            } else if (cookies.artworkPage > 1 || simplifiedArray.reverse().splice(0, 10 * (cookies.artworkPage - 1)).slice(0, 10)) {
+              simplifiedArray.splice(0, 10 * (cookies.artworkPage -1));
+              setArtwork(simplifiedArray.slice(0, 10));
+            }
           };
         },
       )
@@ -49,6 +57,11 @@ const ArtworkPage = () => {
 
   useEffect(() => {
     getArtworks();
+    if (!cookies.artworkPage) {
+      setCookie('artworkPage', 1, {
+        path: "/"
+      });
+    };
   }, []);
 
   return (
@@ -74,6 +87,7 @@ const ArtworkPage = () => {
         {artwork.map((artwork) => <ArtworkList id={artwork.id} title={artwork.title} photo_id={artwork.photo_id}/>,)}
       </div>}
       {artwork.length === 0 && <h2 className='artwork__message'>Il n'y a pas de rèsultats selon vos paramétres de recherche</h2>}
+      <Page length={length} />
     </section>
   );
 };

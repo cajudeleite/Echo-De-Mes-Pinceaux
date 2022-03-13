@@ -13,6 +13,7 @@ const NavItems = ({simulateClick}) => {
 
   return (
     <>
+      <Link name='Accueil' link='/' simulateClick={method} />
       <Link name='Galerie' link='/artwork' simulateClick={method} />
       <Link name='Contact' link='/contact' simulateClick={method} />
       {logged && <h1 className="navbar__items__link" onClick={() => {

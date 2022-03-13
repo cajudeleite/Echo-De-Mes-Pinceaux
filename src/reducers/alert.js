@@ -1,8 +1,8 @@
 import { SET_ALERT } from "../actions/alert";
 
 const initialState = {
-  title: 'Error',
-  button: 'OK',
+  title: '',
+  button: '',
   route: '/',
 };
 
