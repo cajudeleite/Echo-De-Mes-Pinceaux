@@ -84,6 +84,7 @@ const ArtworkItem = () => {
   });
 
   useEffect(() => {
+    setTimeout(() => { document.querySelector('.home__carousel__right').click(); }, 500);
     axios
       .get(`https://v1-echo-de-mes-pinceaux.herokuapp.com/artworks/${cookiedId()}`)
       .then(

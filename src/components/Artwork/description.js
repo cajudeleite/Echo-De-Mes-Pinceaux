@@ -25,7 +25,7 @@ const Description = ({ text }) => {
     if (linkText.match(/youtu/)) {
       const youtubeID = text.replace(/.*=/, '');
       const source = `https://www.youtube.com/embed/${youtubeID}`;
-      return (<div className="video-wrapper"><iframe src={source} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>);
+      return (<div className="video-wrapper"><iframe src={source} frameBorder="0" style={{width: '100%'}} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>);
     } else {
       return (<a className='artwork__item__content__text__description__hyperlink' href={replace} target="_blank">{linkText}</a>);
     };
