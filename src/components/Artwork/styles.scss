@@ -296,6 +296,17 @@
         }
       }
     }
+    &__page {
+      display: flex;
+      justify-content: center;
+      padding: 1rem 2rem;
+      align-items: center;
+      &__arrows {
+        font-size: 25px;
+        padding: 0 2rem;
+        cursor: pointer;
+      }
+    }
   }
   &__message {
     text-align: center;
