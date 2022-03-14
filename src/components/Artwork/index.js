@@ -30,6 +30,7 @@ const ArtworkPage = () => {
           const artworkArray = response.data;
           let simplifiedArray = simplifyArtworks(artworkArray);
           simplifiedArray = simplifiedArray.reverse();
+          setLength(simplifiedArray.length);
           if (type !== 'none' && value !== 'none') {
             const newArray = [];
             simplifiedArray.reverse().map((item) => {
