@@ -15,6 +15,11 @@ const Link = ({name, link, simulateClick}) => {
       setCookie('inputFocus', 'true', {
         path: "/"
       });
+    } else if (name === 'Galerie' && cookies.artworkPage != 1 && window.location.pathname === '/artwork') {
+      setCookie("artworkPage", 1, {
+        path: "/"
+      });
+      window.location.reload();
     };
     if (cookies.artworkTitre) removeCookie('artworkTitre');
     if (cookies.artworkAnnée) removeCookie('artworkAnnée');
