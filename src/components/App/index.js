@@ -33,7 +33,7 @@ const App = () => {
 
   return(
     <main className="app">
-      {cookieCard && <CookieCard methodAccept={setCookie} methodDecline={setCookieCard} />}
+      {/* {cookieCard && <CookieCard methodAccept={setCookie} methodDecline={setCookieCard} />}
       <NavBar />
       <Switch>
         <Route path='/' exact>
@@ -54,7 +54,8 @@ const App = () => {
         {logged && <Route path='/artwork/create' exact>
           <ArtworkForm />
         </Route>}
-      </Switch>
+      </Switch> */}
+      <img src="https://i1.wp.com/www.mpt-ea.org/wp-content/uploads/2020/01/site-en-construction.jpg?fit=595%2C552&ssl=1" alt="" />
     </main>
   );
 };

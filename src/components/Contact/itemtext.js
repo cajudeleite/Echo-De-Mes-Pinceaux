@@ -14,7 +14,6 @@ const ItemText = ({ value, setValue, label }) => {
     return value;
   };
 
-
   return (
     <div className="contact__container__form__item__text">
       <label htmlFor={labelLowerCase} className='contact__container__form__item__text__label'>{label}</label>

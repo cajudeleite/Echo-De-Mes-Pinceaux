@@ -11,6 +11,8 @@ import { useLayoutEffect } from 'react';
 import HomeCarousel from './carousel';
 import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { simplifyArtworks } from '../../utils';
 
 const Home = () => {
 
@@ -24,6 +26,28 @@ const Home = () => {
     }
   });
 
+  const photoArray = [];
+
+  axios
+    .get('https://v1-echo-de-mes-pinceaux.herokuapp.com/artworks')
+    .then(
+      (response) => {
+        const artworkArray = response.data;
+        const simplifiedArray = simplifyArtworks(artworkArray);
+        simplifiedArray.map((i) => {
+          i.photo_id.split(',').map((e) => {
+            photoArray.push(e.replace('echo/', ''));
+          });
+        });
+      },
+    )
+    .catch(
+      (error) => {
+        console.log(error);
+      },
+    );
+
+    console.log(photoArray);
   return (
     <section className="home">
       <div className="home__text__first">
